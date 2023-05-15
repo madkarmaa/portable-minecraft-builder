@@ -33,7 +33,7 @@ Simply run `Portable Minecraft Builder (win64).bat`. You'll be prompted to enter
 
 - **[jreisinger/ghrel](https://github.com/jreisinger/ghrel)**: used to download files from github repositories.
 
-> _Big thanks to **[@jreisinger](https://github.com/jreisinger)**, using their tool made my life way easier._
+> _Huge thanks to **[@jreisinger](https://github.com/jreisinger)**, using their tool made my life way easier._
 
 - **[adoptium/temurin17-binaries](https://github.com/adoptium/temurin17-binaries/)**: the recommended Java version by SKlauncher.
 
