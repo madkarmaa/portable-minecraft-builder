@@ -15,16 +15,18 @@ set javaUrl=https://dl.dropboxusercontent.com/s/l0dho2lme8h2csv/OpenJDK17U-jdk_x
 set launcherUrl=https://dl.dropboxusercontent.com/s/oiq7f0vkwuz9ltx/SKlauncher.jar
 set batchUrl=https://dl.dropboxusercontent.com/s/iu2fcnk648f0f25/minecraft.bat
 set vbsUrl=https://dl.dropboxusercontent.com/s/q5bmyflmiw7nn1a/Minecraft.vbs
-set dlUrl=
+set dlUrl=https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/master/asset-downloader.bat
 set javaFolder=jre
 
 for %%F in ("%javaUrl%") do set "javaZip=%%~nxF"
 for %%F in ("%launcherUrl%") do set "launcherJar=%%~nxF"
 for %%F in ("%batchUrl%") do set "batchName=%%~nF"
 for %%F in ("%vbsUrl%") do set "vbsName=%%~nF"
+for %%F in ("%dlUrl%") do set "dlName=%%~nF"
 
 set batchName=%batchName%.bat
 set vbsName=%vbsName%.vbs
+set dlName=%dlName%.bat
 
 echo [36mPortable Minecraft Builder (Windows 64 bit only)[0m
 echo.
@@ -34,8 +36,9 @@ echo.
 echo [ENTER] to begin the installation process.
 pause >NUL 2>&1
 
-curl -L -o "%dlName%" "%dlurl%" >NUL 2>&1
-%~dp0asset-downloader.bat *windows_arm64*.tar.gz* https://api.github.com/repos/jreisinger/ghrel/releases/latest
+curl -L -o "%dlName%" "%dlUrl%" >NUL 2>&1
+%~dp0%dlName% *windows_arm64*.tar.gz* https://api.github.com/repos/jreisinger/ghrel/releases/latest
+powershell -command "Expand-Archive -Force '%~dp0%dlName%' '%~dp0'"
 
 echo.
 set dataFolder=minecraft
