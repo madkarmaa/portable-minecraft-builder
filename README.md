@@ -21,7 +21,7 @@ Sadly, I haven't discovered (_yet_) a way to automatically download SKlauncher f
 
 ## ❓ How to use
 
-Simply run `portable-minecraft-builder-(win64).bat` (download **[here](https://bit.ly/portable-mc)**. You'll be prompted to enter some personalization settings, then just let the script do its thing 😉. It will delete all the unnecessary files by itself. Further instructions/informations are available at script runtime.
+Simply run `portable-minecraft-builder-(win64).bat` (download **[here](https://bit.ly/portable-mc)**). You'll be prompted to enter some personalization settings, then just let the script do its thing 😉. It will delete all the unnecessary files by itself. Further instructions/informations are available at script runtime.
 
 ![separator](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
