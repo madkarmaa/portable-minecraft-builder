@@ -4,6 +4,11 @@ setlocal
 set "matchPattern=%~1"
 set "apiUrl=%~2"
 
-powershell -command "$response=Invoke-RestMethod -Uri '%apiUrl%';$asset=$response.assets|Where-Object {$_.browser_download_url -like '%matchPattern%'};if($asset){$downloadUrl=$asset.browser_download_url;$fileName=$asset.name;Invoke-WebRequest -Uri $downloadUrl -OutFile $fileName}else{exit 1}"
+for /f "usebackq tokens=2 delims== " %%G in (`curl -L -s "%apiUrl%" ^| findstr /C:"browser_download_url"`) do (
+  echo %%G | findstr /C:"%matchPattern%" > nul && (
+    curl -L -o "%%~nG" "%%G"
+    exit /b 0
+  )
+)
 
-endlocal
+exit /b 1

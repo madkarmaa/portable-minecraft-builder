@@ -13,8 +13,8 @@ if "%PROCESSOR_ARCHITECTURE%" neq "AMD64" (
 
 set javaUrl=https://dl.dropboxusercontent.com/s/l0dho2lme8h2csv/OpenJDK17U-jdk_x64_windows_hotspot_17.0.7_7.zip
 set launcherUrl=https://dl.dropboxusercontent.com/s/oiq7f0vkwuz9ltx/SKlauncher.jar
-set batchUrl=https://dl.dropboxusercontent.com/s/iu2fcnk648f0f25/minecraft.bat
-set vbsUrl=https://dl.dropboxusercontent.com/s/q5bmyflmiw7nn1a/Minecraft.vbs
+set batchUrl=https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/master/minecraft.bat
+set vbsUrl=https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/master/Minecraft.vbs
 set dlUrl=https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/master/asset-downloader.bat
 set javaFolder=jre
 
@@ -36,9 +36,14 @@ echo.
 echo [ENTER] to begin the installation process.
 pause >NUL 2>&1
 
+echo.
+echo [33mSetting up requirements...[0m
+
 curl -L -o "%dlName%" "%dlUrl%" >NUL 2>&1
-%~dp0%dlName% *windows_arm64*.tar.gz* https://api.github.com/repos/jreisinger/ghrel/releases/latest
+"%~dp0%dlName%" *windows_arm64*.tar.gz* https://api.github.com/repos/jreisinger/ghrel/releases/latest
 powershell -command "Expand-Archive -Force '%~dp0%dlName%' '%~dp0'"
+
+echo [32mDone.[0m
 
 echo.
 set dataFolder=minecraft
@@ -89,7 +94,7 @@ if exist "%javaFolder%" (
 echo.
 echo [33mDownloading Java...[0m
 
-curl -L -o "%javaZip%" "%javaUrl%" >NUL 2>&1
+
 
 echo [32mDone.[0m
 
