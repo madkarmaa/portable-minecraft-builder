@@ -55,7 +55,7 @@ echo [32mDone.[0m
 echo.
 set dataFolder=minecraft
 set /p dataFolder="Custom name for the Minecraft data folder (optional, [ENTER] to skip): "
-set dataFolder=.%dataFolder%
+set dataFolder=%dataFolder: =-%
 
 if exist ".\%dataFolder%" (
     echo.
