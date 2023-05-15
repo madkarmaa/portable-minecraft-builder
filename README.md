@@ -35,7 +35,9 @@ Simply run `Portable Minecraft Builder (win64).bat`. You'll be prompted to enter
 
 > _Big thanks to **[@jreisinger](https://github.com/jreisinger)**, using their tool made my life way easier._
 
-- **[adoptium/temurin17-binaries](https://github.com/adoptium/temurin17-binaries/)** (current: [jdk-17.0.7+7](https://github.com/adoptium/temurin17-binaries/releases/tag/jdk-17.0.7+7)): the recommended Java version by SKlauncher.
+- **[adoptium/temurin17-binaries](https://github.com/adoptium/temurin17-binaries/)**: the recommended Java version by SKlauncher.
+
+(current: [jdk-17.0.7+7](https://github.com/adoptium/temurin17-binaries/releases/tag/jdk-17.0.7+7))
 
 > _Visit [Adoptium's website](https://adoptium.net/)._
 
