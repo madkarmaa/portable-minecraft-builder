@@ -1,7 +1,7 @@
 @echo off
 
-set java="%~dp0javafolder\bin\javaw.exe"
-set launcher="%~dp0launchername"
-set workingDirectory="%~dp0datadir"
+set java=".\javafolder\bin\javaw.exe"
+set launcher=".\launchername"
+set workingDirectory=".\datadir"
 
 %java% -jar %launcher% --workDir %workingDirectory%
