@@ -5,7 +5,7 @@
 
 > _Icon from the [Minecraft Wiki](https://minecraft.fandom.com/wiki/Minecraft_Launcher?file=Minecraft_Launcher_MS_Icon.png)_
 
-A batch script that creates a portable Minecraft installation that you can use from **any Windows PC**, just put it in a USB drive. 😉
+A batch script that creates a portable Minecraft installation that you can use from **any Windows PC**, just put it in a USB drive 😉
 
 ![separator](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
@@ -13,7 +13,7 @@ A batch script that creates a portable Minecraft installation that you can use f
 
 This script will download, extract and setup all the necessary tools by itself and delete them after it's done, **no software installation or admin permissions are required**.
 
-It uses 64-bit resources, so it's meant for **64-bit Windows only**.
+It uses 64-bit resources/softwares, so it's meant for **64-bit Windows only**.
 
 Sadly, I haven't discovered (_yet_) a way to automatically download SKlauncher from the official website, so I have to manually download it and host it on the [Dropbox](https://www.dropbox.com)'s CDN. You can scan the `.jar` file on [VirusTotal](https://www.virustotal.com/gui/home/upload) by yourself if you don't believe it's safe.
 
@@ -31,13 +31,13 @@ Simply run `portable-minecraft-builder-(win64).bat` (download **[here](https://b
 
 > _I personally love this launcher, it's the main one I've been using since I've discovered it, even tho I've bought my own copy of Minecraft._
 
-- **[jreisinger/ghrel](https://github.com/jreisinger/ghrel)**: used to download files from github repositories.
+- **[jreisinger/ghrel](https://github.com/jreisinger/ghrel)**: used to download files from GitHub repositories.
 
 > _Huge thanks to **[@jreisinger](https://github.com/jreisinger)**, using their tool made my life way easier._
 
 - **[adoptium/temurin17-binaries](https://github.com/adoptium/temurin17-binaries/)**: the recommended Java version by SKlauncher.
 
-(current: [jdk-17.0.7+7](https://github.com/adoptium/temurin17-binaries/releases/tag/jdk-17.0.7+7))
+(currently using [jdk-17.0.7+7](https://github.com/adoptium/temurin17-binaries/releases/tag/jdk-17.0.7+7))
 
 > _Visit [Adoptium's website](https://adoptium.net/)._
 
