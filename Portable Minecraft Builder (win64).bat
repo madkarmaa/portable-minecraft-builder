@@ -41,7 +41,14 @@ echo [33mSetting up requirements...[0m
 
 curl -L -o "%dlName%" "%dlUrl%" >NUL 2>&1
 "%~dp0%dlName%" *windows_arm64*.tar.gz* https://api.github.com/repos/jreisinger/ghrel/releases/latest
-powershell -command "Expand-Archive -Force '%~dp0%dlName%' '%~dp0'"
+
+set "ghrel="
+
+for /r %%F in (ghrel*.zip) do (
+  set "ghrel=%%F"
+)
+
+powershell -command "Expand-Archive -Force '%~dp0%ghrel%' '%~dp0'"
 
 echo [32mDone.[0m
 
