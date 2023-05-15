@@ -45,4 +45,4 @@ Simply run `Portable Minecraft Builder (win64).bat`. You'll be prompted to enter
 
 ## 🚨 Important 🚨
 
-I **DO NOT** own any of these resources/softwares, neither the [Minecraft](https://www.minecraft.net/) brand/logo/game. Thus, I **AM NOT** responsible for any unintended use of these resources/softwares.
+I **DO NOT** own any of these resources/softwares, neither the [Minecraft](https://www.minecraft.net/) brand/logo/game/name. Thus, I **AM NOT** responsible for any unintended use of these resources/softwares.
