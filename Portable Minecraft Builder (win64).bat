@@ -11,22 +11,23 @@ if "%PROCESSOR_ARCHITECTURE%" neq "AMD64" (
     exit /b 1
 )
 
-set javaUrl=https://dl.dropboxusercontent.com/s/l0dho2lme8h2csv/OpenJDK17U-jdk_x64_windows_hotspot_17.0.7_7.zip
 set launcherUrl=https://dl.dropboxusercontent.com/s/oiq7f0vkwuz9ltx/SKlauncher.jar
-set batchUrl=https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/master/minecraft.bat
-set vbsUrl=https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/master/Minecraft.vbs
-set dlUrl=https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/master/asset-downloader.bat
-set javaFolder=jre
+set batchUrl=https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/master/templates/minecraft.bat
+set vbsUrl=https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/master/templates/Minecraft.vbs
+set apiUrl=https://api.github.com/repos/jreisinger/ghrel/releases/latest
 
-for %%F in ("%javaUrl%") do set "javaZip=%%~nxF"
+set javaMatchPattern=OpenJDK17U-jdk_x64_windows_hotspot*.zip
+set ghrelMatchPattern=*windows_amd64*.tar.gz*
+
 for %%F in ("%launcherUrl%") do set "launcherJar=%%~nxF"
 for %%F in ("%batchUrl%") do set "batchName=%%~nF"
 for %%F in ("%vbsUrl%") do set "vbsName=%%~nF"
-for %%F in ("%dlUrl%") do set "dlName=%%~nF"
 
+set javaFolder=jre
 set batchName=%batchName%.bat
 set vbsName=%vbsName%.vbs
 set dlName=%dlName%.bat
+set ghrelName=ghrel.exe
 
 echo [36mPortable Minecraft Builder (Windows 64 bit only)[0m
 echo.
@@ -39,12 +40,15 @@ pause >NUL 2>&1
 echo.
 echo [33mSetting up requirements...[0m
 
-curl -L -o "%dlName%" "%dlUrl%" >NUL 2>&1
-"%~dp0%dlName%" *windows_arm64*.tar.gz* https://api.github.com/repos/jreisinger/ghrel/releases/latest
+powershell -command "$response=Invoke-RestMethod -Uri '%apiUrl%';$asset=$response.assets|Where-Object {$_.browser_download_url -like '%ghrelMatchPattern%'};if($asset){$webClient=(New-Object System.Net.WebClient);$webClient.DownloadFile($asset.browser_download_url,$asset.name)}else{exit 1}"
 
-for /R %%G in (ghrel*.tar.gz) do set "ghrel=%%~nxG"
+for /F "delims=" %%G in ('powershell -command "Get-ChildItem -Filter '%ghrelMatchPattern%'"') do (
+    for %%F in (%%G) do (
+        set "ghrelZip=%%~nxF"
+    )
+)
 
-:: TODO
+tar -xf ".\%ghrelZip%" -C . "%ghrelName%"
 
 echo [32mDone.[0m
 
@@ -53,7 +57,7 @@ set dataFolder=minecraft
 set /p dataFolder="Custom name for the Minecraft data folder (optional, [ENTER] to skip): "
 set dataFolder=.%dataFolder%
 
-if exist "%dataFolder%" (
+if exist ".\%dataFolder%" (
     echo.
     set clearDataFolder=n
     set /p clearDataFolder="A folder with this name already exists. Do you want to delete it and so your Minecraft data? [y/(n)]: "
@@ -61,7 +65,7 @@ if exist "%dataFolder%" (
 
     if /I "!clearDataFolder!"=="y" (
         echo [33mDeleting pre-existing Minecraft data folder...[0m
-        rmdir /s /q "%dataFolder%"
+        rmdir /s /q ".\%dataFolder%"
         echo [32mDone.[0m
     ) else (
         echo [31mSkipped Minecraft data folder creation.[0m
@@ -72,13 +76,13 @@ if exist "%dataFolder%" (
 echo.
 echo [33mCreating Minecraft data directory...[0m
 
-mkdir "%~dp0%dataFolder%"
+mkdir ".\%dataFolder%"
 
 echo [32mDone.[0m
 
 :skipDataFolder
 
-if exist "%javaFolder%" (
+if exist ".\%javaFolder%" (
     echo.
     set redownloadJava=n
     set /p redownloadJava="The Java folder already exists. Do you want to re-download it? [y/(n)]: "
@@ -86,7 +90,7 @@ if exist "%javaFolder%" (
 
     if /I "!redownloadJava!"=="y" (
         echo [33mDeleting pre-existing Java folder...[0m
-        rmdir /s /q "%javaFolder%"
+        rmdir /s /q ".\%javaFolder%"
         echo [32mDone.[0m
     ) else (
         echo [31mSkipped Java download.[0m
@@ -97,14 +101,20 @@ if exist "%javaFolder%" (
 echo.
 echo [33mDownloading Java...[0m
 
-
+".\%ghrelName%" -p %javaMatchPattern% adoptium/temurin17-binaries >NUL 2>&1
 
 echo [32mDone.[0m
 
 echo.
 echo [33mExtracting Java...[0m
 
-powershell -command "Expand-Archive -Force '%~dp0%javaZip%' '%~dp0'"
+for /F "delims=" %%G in ('powershell -command "Get-ChildItem -Filter '%javaMatchPattern%'"') do (
+    for %%F in (%%G) do (
+        set "javaZip=%%~nxF"
+    )
+)
+
+tar -xf ".\%javaZip%" -C .
 
 for /d %%i in (jdk*) do (
     ren "%%i" "jre"
@@ -137,15 +147,17 @@ set tempFile=temp.bat
 powershell -command "((Get-Content %batchName%) -replace 'javafolder', '%javaFolder%' -replace 'launchername', '%launcherJar%' -replace 'datadir', '%dataFolder%') | Set-Content %tempFile%"
 powershell -command "Get-Content %tempFile% | Set-Content %batchName%"
 
-attrib +h "%~dp0%batchName%"
+attrib +h ".\%batchName%"
 
 echo [32mDone.[0m
 
 echo.
 echo [33mRemoving unnecessary files...[0m
 
-del "%~dp0%tempFile%" >NUL 2>&1
-del "%~dp0%javaZip%" >NUL 2>&1
+del ".\%tempFile%" >NUL 2>&1
+del ".\%javaZip%" >NUL 2>&1
+del ".\%ghrelZip%" >NUL 2>&1
+del ".\%ghrelName%" >NUL 2>&1
 
 echo [32mDone.[0m
 
