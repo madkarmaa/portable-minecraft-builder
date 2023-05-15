@@ -45,4 +45,4 @@ Simply run `Portable Minecraft Builder (win64).bat`. You'll be prompted to enter
 
 ## 🚨 Important 🚨
 
-Neither I nor GitHub are responsible for any unintended use of these resources/softwares, as I do not own any of them, including the [Minecraft](https://minecraft.net) brand/logo/game/name.
+Neither I nor GitHub are responsible for any unintended use of these resources/softwares, as I do not own any of them, including (but not limited to) the [Minecraft](https://minecraft.net) brand/logo/game/name.
