@@ -5,7 +5,7 @@
 
 > _Icon from the [Minecraft Wiki](https://minecraft.fandom.com/wiki/Minecraft_Launcher?file=Minecraft_Launcher_MS_Icon.png)_
 
-A batch script that creates a portable Minecraft installation that you can use from **anywhere**, just put it in a USB drive. 😉
+A batch script that creates a portable Minecraft installation that you can use from **any Windows PC**, just put it in a USB drive. 😉
 
 ![separator](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
