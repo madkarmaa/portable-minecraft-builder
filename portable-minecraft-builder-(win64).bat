@@ -179,6 +179,9 @@ echo [32mDone.[0m
 echo.
 echo [31mDO NOT move any of the created files/directories. If you really have to do it, you MUST move them all together.[0m
 echo.
+echo [33mTwo files have been set as hidden, since you don't need to execute them.[0m
+echo [33mIf they're not visible, yet you want to see them, enable 'Show hidden files' in the file explorer.[0m
+echo.
 echo [35mAll done. Execute %vbsName% to start playing.[0m
 
 echo.
