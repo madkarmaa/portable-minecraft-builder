@@ -129,7 +129,7 @@ echo [32mDone.[0m
 echo.
 echo [33mDownloading SKlauncher...[0m
 
-curl -L -o ".\%launcherJar%" "%launcherUrl%" >NUL 2>&1
+powershell.exe -command "(New-Object System.Net.WebClient).DownloadFile('%launcherUrl%', '.\%launcherJar%')" >NUL 2>&1
 
 attrib +h ".\%launcherJar%"
 
@@ -138,8 +138,8 @@ echo [32mDone.[0m
 echo.
 echo [33mDownloading templates...[0m
 
-curl -L -o ".\%batchName%" "%batchUrl%" >NUL 2>&1
-curl -L -o ".\%vbsName%" "%vbsUrl%" >NUL 2>&1
+powershell.exe -command "(New-Object System.Net.WebClient).DownloadFile('%batchUrl%', '.\%batchName%')" >NUL 2>&1
+powershell.exe -command "(New-Object System.Net.WebClient).DownloadFile('%vbsUrl%', '.\%vbsName%')" >NUL 2>&1
 
 echo [32mDone.[0m
 
