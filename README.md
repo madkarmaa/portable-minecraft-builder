@@ -13,7 +13,7 @@ A batch script that creates a portable Minecraft installation that you can use f
 
 This script will download, extract and setup all the necessary tools by itself and delete them after it's done, **no software installation or admin permissions are required**.
 
-It uses 64-bit resources/softwares, so it's meant for **64-bit Windows only**.
+It uses 64-bit resources/software, so it's meant for **64-bit Windows only**.
 
 Sadly, I haven't discovered (_yet_) a way to automatically download SKlauncher from the official website, so I have to manually download it and host it on the [Dropbox](https://www.dropbox.com)'s CDN. You can scan the `.jar` file on [VirusTotal](https://www.virustotal.com/gui/home/upload) by yourself if you don't believe it's safe.
 
@@ -21,7 +21,7 @@ Sadly, I haven't discovered (_yet_) a way to automatically download SKlauncher f
 
 ## ❓ How to use
 
-Simply run `portable-minecraft-builder-(win64).bat` (download **[here](https://bit.ly/portable-mc)**). You'll be prompted to enter some personalization settings, then just let the script do its thing 😉. It will delete all the unnecessary files by itself. Further instructions/informations are available at script runtime.
+Simply run `portable-minecraft-builder-(win64).bat` (download **[here](https://bit.ly/portable-mc)**). You'll be prompted to enter some personalization settings, then just let the script do its thing 😉. It will delete all the unnecessary files by itself. Further instructions/information are available at script runtime.
 
 ![separator](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
@@ -43,4 +43,4 @@ Simply run `portable-minecraft-builder-(win64).bat` (download **[here](https://b
 
 ## 🚨 Important 🚨
 
-Neither I nor GitHub are responsible for any unintended use of these resources/softwares, as I **DO NOT** own any of them, including (but not limited to) the [Minecraft](https://minecraft.net) brand/logo/game/name.
+Neither I nor GitHub are responsible for any unintended use of these resources/software, as I **DO NOT** own any of them, including (but not limited to) the [Minecraft](https://minecraft.net) brand/logo/game/name.
