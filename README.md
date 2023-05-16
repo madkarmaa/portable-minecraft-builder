@@ -41,6 +41,12 @@ Simply run `portable-minecraft-builder-(win64).bat` (download **[here](https://b
 
 ![separator](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
+## 📷 Screenshots
+
+![console-screenshot](./img/screenshot.png)
+
+![separator](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
+
 ## 🚨 Important 🚨
 
 Neither I nor GitHub are responsible for any unintended use of these resources/software, as I **DO NOT** own any of them, including (but not limited to) the [Minecraft](https://minecraft.net) brand/logo/game/name.
