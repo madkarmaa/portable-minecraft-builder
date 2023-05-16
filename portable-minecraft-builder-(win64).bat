@@ -17,13 +17,13 @@ set vbsUrl=https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builde
 set apiUrl=https://api.github.com/repos/jreisinger/ghrel/releases/latest
 
 set javaMatchPattern=OpenJDK17U-jdk_x64_windows_hotspot*.zip
-set ghrelMatchPattern=*windows_amd64*.tar.gz*
+set ghrelMatchPattern=*windows_amd64*.tar.gz
 
 for %%F in ("%launcherUrl%") do set "launcherJar=%%~nxF"
 for %%F in ("%batchUrl%") do set "batchName=%%~nF"
 for %%F in ("%vbsUrl%") do set "vbsName=%%~nF"
 
-set javaFolder=jre
+set javaFolder=jdk
 set javaZip=java.zip
 set batchName=%batchName%.bat
 set vbsName=%vbsName%.vbs
@@ -119,7 +119,7 @@ for /F "delims=" %%G in ('powershell -command "Get-ChildItem -Filter '%javaMatch
 tar -xf ".\%javaZip%" -C .
 
 for /d %%i in (jdk*) do (
-    ren "%%i" "jre"
+    ren "%%i" "%javaFolder%"
 )
 
 echo [32mDone.[0m
@@ -129,7 +129,7 @@ echo [32mDone.[0m
 echo.
 echo [33mDownloading SKlauncher...[0m
 
-curl -L -o "%launcherJar%" "%launcherUrl%" >NUL 2>&1
+curl -L -o ".\%launcherJar%" "%launcherUrl%" >NUL 2>&1
 
 attrib +h ".\%launcherJar%"
 
@@ -138,8 +138,8 @@ echo [32mDone.[0m
 echo.
 echo [33mDownloading templates...[0m
 
-curl -L -o "%batchName%" "%batchUrl%" >NUL 2>&1
-curl -L -o "%vbsName%" "%vbsUrl%" >NUL 2>&1
+curl -L -o ".\%batchName%" "%batchUrl%" >NUL 2>&1
+curl -L -o ".\%vbsName%" "%vbsUrl%" >NUL 2>&1
 
 echo [32mDone.[0m
 
