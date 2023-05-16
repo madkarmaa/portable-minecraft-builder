@@ -24,6 +24,7 @@ for %%F in ("%batchUrl%") do set "batchName=%%~nF"
 for %%F in ("%vbsUrl%") do set "vbsName=%%~nF"
 
 set javaFolder=jre
+set javaZip=java.zip
 set batchName=%batchName%.bat
 set vbsName=%vbsName%.vbs
 set dlName=%dlName%.bat
@@ -130,6 +131,8 @@ echo [33mDownloading SKlauncher...[0m
 
 curl -L -o "%launcherJar%" "%launcherUrl%" >NUL 2>&1
 
+attrib +h ".\%launcherJar%"
+
 echo [32mDone.[0m
 
 echo.
@@ -155,10 +158,21 @@ echo [32mDone.[0m
 echo.
 echo [33mRemoving unnecessary files...[0m
 
-del ".\%tempFile%" >NUL 2>&1
-del ".\%javaZip%" >NUL 2>&1
-del ".\%ghrelZip%" >NUL 2>&1
-del ".\%ghrelName%" >NUL 2>&1
+if exist ".\%tempFile%" (
+    del /F ".\%tempFile%" >NUL 2>&1
+)
+
+if exist ".\%javaZip%" (
+    del /F ".\%javaZip%" >NUL 2>&1
+)
+
+if exist ".\%ghrelZip%" (
+    del /F ".\%ghrelZip%" >NUL 2>&1
+)
+
+if exist ".\%ghrelName%" (
+    del /F ".\%ghrelName%" >NUL 2>&1
+)
 
 echo [32mDone.[0m
 
