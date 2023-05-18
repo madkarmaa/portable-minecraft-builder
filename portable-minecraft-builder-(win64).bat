@@ -11,17 +11,17 @@ if "%PROCESSOR_ARCHITECTURE%" neq "AMD64" (
     exit /b 1
 )
 
-set launcherUrl=https://dl.dropboxusercontent.com/s/oiq7f0vkwuz9ltx/SKlauncher.jar
 set batchUrl=https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/master/templates/minecraft.bat
 set vbsUrl=https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/master/templates/Minecraft.vbs
 set apiUrl=https://api.github.com/repos/jreisinger/ghrel/releases/latest
+set pwsUrl=https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/master/utils/launcher-downloader.ps1
 
 set javaMatchPattern=OpenJDK17U-jdk_x64_windows_hotspot*.zip
 set ghrelMatchPattern=*windows_amd64*.tar.gz
 
-for %%F in ("%launcherUrl%") do set "launcherJar=%%~nxF"
 for %%F in ("%batchUrl%") do set "batchName=%%~nF"
 for %%F in ("%vbsUrl%") do set "vbsName=%%~nF"
+for %%F in ("%pwsUrl%") do set "pwsName=%%~nF"
 
 set javaFolder=jdk
 set javaZip=java.zip
@@ -40,6 +40,8 @@ pause >NUL 2>&1
 
 echo.
 echo [33mSetting up requirements...[0m
+
+powershell.exe -command "(New-Object System.Net.WebClient).DownloadFile('%pwsUrl%', '.\%pwsName%')" >NUL 2>&1
 
 powershell -command "$response=Invoke-RestMethod -Uri '%apiUrl%';$asset=$response.assets|Where-Object {$_.browser_download_url -like '%ghrelMatchPattern%'};if($asset){$webClient=(New-Object System.Net.WebClient);$webClient.DownloadFile($asset.browser_download_url,$asset.name)}else{exit 1}"
 
@@ -129,7 +131,18 @@ echo [32mDone.[0m
 echo.
 echo [33mDownloading SKlauncher...[0m
 
-powershell.exe -command "(New-Object System.Net.WebClient).DownloadFile('%launcherUrl%', '.\%launcherJar%')" >NUL 2>&1
+powershell.exe -Command "If((Get-ExecutionPolicy) -ne 'Restricted') { Exit 0 } Else { Exit 1 }"
+if %errorlevel% equ 0 (
+    powershell.exe -File "%pwsName%"
+) else (
+    set "psCommand="
+    for /F "usebackq delims=" %%G in ("%pwsName%") do set "psCommand=!psCommand! %%G"
+    powershell.exe -Command "!psCommand!"
+)
+
+for /r %%G in ("SKlauncher.jar") do (
+    set "launcherJar=%%~fG"
+)
 
 attrib +h ".\%launcherJar%"
 
