@@ -29,6 +29,9 @@ set batchName=%batchName%.bat
 set vbsName=%vbsName%.vbs
 set dlName=%dlName%.bat
 set ghrelName=ghrel.exe
+set pwsName=%pwsName%.ps1
+
+set launcherJar=SKlauncher.jar
 
 echo [36mPortable Minecraft Builder (Windows 64 bit only)[0m
 echo.
@@ -41,7 +44,7 @@ pause >NUL 2>&1
 echo.
 echo [33mSetting up requirements...[0m
 
-powershell.exe -command "(New-Object System.Net.WebClient).DownloadFile('%pwsUrl%', '.\%pwsName%')" >NUL 2>&1
+powershell -command "(New-Object System.Net.WebClient).DownloadFile('%pwsUrl%', '.\%pwsName%')" >NUL 2>&1
 
 powershell -command "$response=Invoke-RestMethod -Uri '%apiUrl%';$asset=$response.assets|Where-Object {$_.browser_download_url -like '%ghrelMatchPattern%'};if($asset){$webClient=(New-Object System.Net.WebClient);$webClient.DownloadFile($asset.browser_download_url,$asset.name)}else{exit 1}"
 
@@ -131,17 +134,13 @@ echo [32mDone.[0m
 echo.
 echo [33mDownloading SKlauncher...[0m
 
-powershell.exe -Command "If((Get-ExecutionPolicy) -ne 'Restricted') { Exit 0 } Else { Exit 1 }"
+powershell -Command "If((Get-ExecutionPolicy) -ne 'Restricted') { Exit 0 } Else { Exit 1 }"
 if %errorlevel% equ 0 (
-    powershell.exe -File "%pwsName%"
+    powershell -File "%pwsName%"
 ) else (
     set "psCommand="
     for /F "usebackq delims=" %%G in ("%pwsName%") do set "psCommand=!psCommand! %%G"
-    powershell.exe -Command "!psCommand!"
-)
-
-for /r %%G in ("SKlauncher.jar") do (
-    set "launcherJar=%%~fG"
+    powershell -Command "!psCommand!"
 )
 
 attrib +h ".\%launcherJar%"
@@ -151,8 +150,8 @@ echo [32mDone.[0m
 echo.
 echo [33mDownloading templates...[0m
 
-powershell.exe -command "(New-Object System.Net.WebClient).DownloadFile('%batchUrl%', '.\%batchName%')" >NUL 2>&1
-powershell.exe -command "(New-Object System.Net.WebClient).DownloadFile('%vbsUrl%', '.\%vbsName%')" >NUL 2>&1
+powershell -command "(New-Object System.Net.WebClient).DownloadFile('%batchUrl%', '.\%batchName%')" >NUL 2>&1
+powershell -command "(New-Object System.Net.WebClient).DownloadFile('%vbsUrl%', '.\%vbsName%')" >NUL 2>&1
 
 echo [32mDone.[0m
 
@@ -185,6 +184,10 @@ if exist ".\%ghrelZip%" (
 
 if exist ".\%ghrelName%" (
     del /F ".\%ghrelName%" >NUL 2>&1
+)
+
+if exist ".\%pwsName%" (
+    del /F ".\%pwsName%" >NUL 2>&1
 )
 
 echo [32mDone.[0m

@@ -15,8 +15,6 @@ This script will download, extract and setup all the necessary tools by itself a
 
 It uses 64-bit resources/software, so it's meant for **64-bit Windows only**.
 
-Sadly, I haven't discovered (_yet_) a way to automatically download SKlauncher from the official website, so I have to manually download it and host it on the [Dropbox](https://www.dropbox.com)'s CDN. You can scan the `.jar` file on [VirusTotal](https://www.virustotal.com/gui/home/upload) by yourself if you don't believe it's safe.
-
 ![separator](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
 ## ❓ How to use
