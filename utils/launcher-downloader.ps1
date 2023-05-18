@@ -1,3 +1,5 @@
+Add-Type -AssemblyName System.Net.Http
+
 $fetchUrl = "https://skmedix.pl/downloads/json"
 $outputPath = ".\SKlauncher.jar"
 
