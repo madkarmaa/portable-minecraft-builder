@@ -13,11 +13,10 @@ if "%PROCESSOR_ARCHITECTURE%" neq "AMD64" (
 
 set batchUrl=https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/master/templates/minecraft.bat
 set vbsUrl=https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/master/templates/Minecraft.vbs
-set apiUrl=https://api.github.com/repos/jreisinger/ghrel/releases/latest
+set apiUrl=https://api.github.com/repos/adoptium/temurin17-binaries/releases/latest
 set pwsUrl=https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/master/utils/launcher-downloader.ps1
 
 set javaMatchPattern=OpenJDK17U-jdk_x64_windows_hotspot*.zip
-set ghrelMatchPattern=*windows_amd64*.tar.gz
 
 for %%F in ("%batchUrl%") do set "batchName=%%~nF"
 for %%F in ("%vbsUrl%") do set "vbsName=%%~nF"
@@ -28,9 +27,7 @@ set javaZip=java.zip
 set batchName=%batchName%.bat
 set vbsName=%vbsName%.vbs
 set dlName=%dlName%.bat
-set ghrelName=ghrel.exe
 set pwsName=%pwsName%.ps1
-
 set launcherJar=SKlauncher.jar
 
 echo [36mPortable Minecraft Builder (Windows 64 bit only)[0m
@@ -45,16 +42,6 @@ echo.
 echo [33mSetting up requirements...[0m
 
 powershell -command "(New-Object System.Net.WebClient).DownloadFile('%pwsUrl%', '.\%pwsName%')" >NUL 2>&1
-
-powershell -command "$response=Invoke-RestMethod -Uri '%apiUrl%';$asset=$response.assets|Where-Object {$_.browser_download_url -like '%ghrelMatchPattern%'};if($asset){$webClient=(New-Object System.Net.WebClient);$webClient.DownloadFile($asset.browser_download_url,$asset.name)}else{exit 1}"
-
-for /F "delims=" %%G in ('powershell -command "Get-ChildItem -Filter '%ghrelMatchPattern%'"') do (
-    for %%F in (%%G) do (
-        set "ghrelZip=%%~nxF"
-    )
-)
-
-tar -xf ".\%ghrelZip%" -C . "%ghrelName%"
 
 echo [32mDone.[0m
 
@@ -108,7 +95,7 @@ if exist ".\%javaFolder%" (
 echo.
 echo [33mDownloading Java...[0m
 
-".\%ghrelName%" -p %javaMatchPattern% adoptium/temurin17-binaries >NUL 2>&1
+powershell -Command "Invoke-RestMethod -Uri '%apiUrl%' | Select-Object -ExpandProperty assets | Where-Object { $_.name -like '%javaMatchPattern%' } | ForEach-Object { $assetUrl = $_.browser_download_url; $outputPath = Join-Path (Get-Location) $_.name; (New-Object System.Net.WebClient).DownloadFile($assetUrl, $outputPath) }"
 
 echo [32mDone.[0m
 
@@ -176,14 +163,6 @@ if exist ".\%tempFile%" (
 
 if exist ".\%javaZip%" (
     del /F ".\%javaZip%" >NUL 2>&1
-)
-
-if exist ".\%ghrelZip%" (
-    del /F ".\%ghrelZip%" >NUL 2>&1
-)
-
-if exist ".\%ghrelName%" (
-    del /F ".\%ghrelName%" >NUL 2>&1
 )
 
 if exist ".\%pwsName%" (

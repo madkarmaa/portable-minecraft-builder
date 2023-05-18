@@ -29,10 +29,6 @@ Simply run `portable-minecraft-builder-(win64).bat` (download **[here](https://b
 
 > _I personally love this launcher, it's the main one I've been using since I've discovered it, even tho I've bought my own copy of Minecraft._
 
-- **[jreisinger/ghrel](https://github.com/jreisinger/ghrel)**: used to download files from GitHub repositories.
-
-> _Huge thanks to **[@jreisinger](https://github.com/jreisinger)**, using their tool made my life way easier._
-
 - **[adoptium/temurin17-binaries](https://github.com/adoptium/temurin17-binaries/)**: the recommended Java version by SKlauncher.
 
 > _Visit [Adoptium's website](https://adoptium.net/)._

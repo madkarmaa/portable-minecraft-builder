@@ -10,3 +10,4 @@ package-lock.json
 /tests
 file*
 script*
+latest.json
