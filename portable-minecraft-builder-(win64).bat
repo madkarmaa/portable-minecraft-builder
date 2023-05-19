@@ -187,6 +187,9 @@ attrib +h ".\%batchName%"
 echo [32mDone.[0m
 
 echo.
+
+set addOpt=n
+
 if /I "!addFabric!"=="y" (
     echo [33mInstalling Fabric...[0m
     echo.
@@ -194,12 +197,28 @@ if /I "!addFabric!"=="y" (
     call ".\%fabricInstallerName%"
 
     echo [32mDone.[0m
-) else (
-    if exist ".\%fabricInstallerName%" (
-        del /F ".\%fabricInstallerName%" >NUL 2>&1
-    )
+    echo.
 
-    echo [31mSkipped adding Fabric.[0m
+    set /p addOpt="Do you want to add Fabric-based optimization mods? (latest game version) [y/(n)]: "
+    echo.
+
+    if /I "!addOpt!"=="y" (
+        echo [33mInstalling mods...[0m
+        echo.
+
+        powershell -ExecutionPolicy Bypass -File "%modsDlName%" fabric-api
+        powershell -ExecutionPolicy Bypass -File "%modsDlName%" iris
+        powershell -ExecutionPolicy Bypass -File "%modsDlName%" lithium
+        powershell -ExecutionPolicy Bypass -File "%modsDlName%" sodium
+        powershell -ExecutionPolicy Bypass -File "%modsDlName%" starlight
+
+        echo.
+        echo [32mDone.[0m
+    ) else (
+        echo [31mSkipped adding mods.[0m
+    )
+) else (
+    echo [31mSkipped installing Fabric.[0m
 )
 
 echo.
@@ -215,6 +234,10 @@ if exist ".\%pwsName%" (
 
 if exist ".\%fabricInstallerName%" (
     del /F ".\%fabricInstallerName%" >NUL 2>&1
+)
+
+if exist ".\%modsDlName%" (
+    del /F ".\%modsDlName%" >NUL 2>&1
 )
 
 echo [32mDone.[0m

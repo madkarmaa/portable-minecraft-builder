@@ -23,7 +23,7 @@ if ($releaseVersions.Count -gt 0) {
 
     $webClient = New-Object System.Net.WebClient
     $webClient.DownloadFile($url, $destinationPath)
-    Write-Host "File downloaded successfully."
+    Write-Host "Successfully installed[32m" $firstReleaseVersion.name "[0m"
 } else {
-    Write-Host "No release versions found."
+    Write-Host "[31mNo release versions found.[0m"
 }
