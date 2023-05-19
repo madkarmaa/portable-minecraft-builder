@@ -3,11 +3,10 @@
 set filepath=".\datadir\launcher_profiles.json"
 
 if not exist "%filepath%" (
-    echo [31mThe file %filepath% does not exist. Please run the *LAUNCHER* and then try again.[0m
-    if exist ".\%~nx0" (
-        ren ".\%~nx0" "RUN-ME-%~nx0">NUL 2>&1
-    )
-    exit /b 1
+    echo [31mThe file %filepath% does not exist.[0m
+    echo [33mThe launcher is starting. Please log-in, then close it to continue.[0m
+
+    start /WAIT ".\Minecraft.vbs"
 )
 
 set pwsFabricUrl=https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/master/utils/fabric-downloader.ps1
