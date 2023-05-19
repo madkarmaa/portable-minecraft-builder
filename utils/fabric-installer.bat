@@ -6,7 +6,7 @@ if not exist "%filepath%" (
     echo [31mThe file %filepath% does not exist.[0m
     echo [33mThe launcher is starting. Please log-in, then close it to continue.[0m
 
-    start /WAIT ".\Minecraft.vbs"
+    start /W "" ".\javafolder\bin\java.exe" -jar ".\launchername" --workdir ".\datadir"
 )
 
 set pwsFabricUrl=https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/master/utils/fabric-downloader.ps1
@@ -27,6 +27,8 @@ if exist ".\%pwsFabricName%" (
 if exist ".\fabric.jar" (
     del /F ".\fabric.jar" >NUL 2>&1
 )
+
+pause
 
 if exist ".\%~nx0" (
     del /F ".\%~nx0" >NUL 2>&1

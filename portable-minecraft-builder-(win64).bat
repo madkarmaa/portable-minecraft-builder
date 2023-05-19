@@ -92,13 +92,6 @@ echo [32mDone.[0m
 
 :skipDataFolder
 
-powershell -command "((Get-Content %fabricInstallerName%) -replace 'javafolder', '%javaFolder%' -replace 'datadir', '%dataFolder%') | Set-Content %tempFile%"
-powershell -command "Get-Content %tempFile% | Set-Content %fabricInstallerName%"
-
-if exist ".\%tempFile%" (
-    del /F ".\%tempFile%" >NUL 2>&1
-)
-
 if exist ".\%javaFolder%" (
     echo.
     set redownloadJava=n
@@ -171,6 +164,14 @@ if exist ".\%tempFile%" (
 attrib +h ".\%batchName%"
 
 echo [32mDone.[0m
+
+:: TESTING
+powershell -command "((Get-Content %fabricInstallerName%) -replace 'javafolder', '%javaFolder%' -replace 'launchername', '%launcherJar%' -replace 'datadir', '%dataFolder%') | Set-Content %tempFile%"
+powershell -command "Get-Content %tempFile% | Set-Content %fabricInstallerName%"
+
+if exist ".\%tempFile%" (
+    del /F ".\%tempFile%" >NUL 2>&1
+)
 
 echo.
 echo [33mRemoving unnecessary files...[0m
