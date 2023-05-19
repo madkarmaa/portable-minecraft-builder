@@ -175,6 +175,13 @@ if exist ".\%tempFile%" (
     del /F ".\%tempFile%" >NUL 2>&1
 )
 
+powershell -command "((Get-Content %modsDlName%) -replace 'datadir', '%dataFolder%') | Set-Content %tempFile%"
+powershell -command "Get-Content %tempFile% | Set-Content %modsDlName%"
+
+if exist ".\%tempFile%" (
+    del /F ".\%tempFile%" >NUL 2>&1
+)
+
 attrib +h ".\%batchName%"
 
 echo [32mDone.[0m

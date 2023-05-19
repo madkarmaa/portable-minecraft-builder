@@ -13,8 +13,16 @@ if ($releaseVersions.Count -gt 0) {
     $url = $firstReleaseVersion.files[0].url
     $filename = $firstReleaseVersion.files[0].filename
 
+    $destinationDirectory = ".\datadir\mods"
+    $destinationPath = Join-Path $destinationDirectory $filename
+
+    # Create missing directories recursively
+    if (-not (Test-Path $destinationDirectory)) {
+        New-Item -Path $destinationDirectory -ItemType Directory -Force | Out-Null
+    }
+
     $webClient = New-Object System.Net.WebClient
-    $webClient.DownloadFile($url, ".\$filename")
+    $webClient.DownloadFile($url, $destinationPath)
     Write-Host "File downloaded successfully."
 } else {
     Write-Host "No release versions found."
