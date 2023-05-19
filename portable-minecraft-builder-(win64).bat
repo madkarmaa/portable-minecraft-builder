@@ -85,7 +85,6 @@ if exist ".\%dataFolder%" (
 
 set addFabric=n
 set /p addFabric="Do you want to add Fabric to your versions? (latest game version) [y/(n)]: "
-echo.
 
 echo.
 echo [33mCreating Minecraft data directory...[0m

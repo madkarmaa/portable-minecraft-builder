@@ -29,15 +29,13 @@ Simply run `portable-minecraft-builder-(win64).bat` (download **[here](https://b
 
 > _I personally love this launcher, it's the main one I've been using since I've discovered it, even tho I've bought my own copy of Minecraft._
 
+- **[Fabric](https://fabricmc.net/)**: modded Minecraft version.
+
+> _"Fabric is a lightweight, experimental modding toolchain for Minecraft."_
+
 - **[adoptium/temurin17-binaries](https://github.com/adoptium/temurin17-binaries/)**: the recommended Java version by SKlauncher.
 
 > _Visit [Adoptium's website](https://adoptium.net/)._
-
-![separator](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
-
-## 📷 Screenshots
-
-![console-screenshot](./img/screenshot.png)
 
 ![separator](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
