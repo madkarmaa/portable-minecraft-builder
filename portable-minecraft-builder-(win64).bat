@@ -121,14 +121,7 @@ echo [32mDone.[0m
 echo.
 echo [33mDownloading SKlauncher...[0m
 
-powershell -Command "If((Get-ExecutionPolicy) -ne 'Restricted') { Exit 0 } Else { Exit 1 }"
-if %errorlevel% equ 0 (
-    powershell -File "%pwsName%"
-) else (
-    set "psCommand="
-    for /F "usebackq delims=" %%G in ("%pwsName%") do set "psCommand=!psCommand! %%G"
-    powershell -Command "!psCommand!"
-)
+powershell -ExecutionPolicy Bypass -File "%pwsName%"
 
 attrib +h ".\%launcherJar%"
 
