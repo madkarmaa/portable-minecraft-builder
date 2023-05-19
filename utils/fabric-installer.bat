@@ -6,7 +6,8 @@ if not exist "%filepath%" (
     echo [31mThe file %filepath% does not exist.[0m
     echo [33mThe launcher is starting. Please log-in, then close it to continue.[0m
 
-    start /W "" ".\javafolder\bin\java.exe" -jar ".\launchername" --workdir ".\datadir"
+    start /W "" ".\javafolder\bin\javaw.exe" -jar ".\launchername" --workdir ".\datadir"
+    echo.
 )
 
 set pwsFabricUrl=https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/master/utils/fabric-downloader.ps1
@@ -18,7 +19,7 @@ powershell -command "(New-Object System.Net.WebClient).DownloadFile('%pwsFabricU
 
 powershell -ExecutionPolicy Bypass -File "%pwsFabricName%" >NUL 2>&1
 
-".\javafolder\bin\java.exe" -jar .\fabric.jar client -dir ".\datadir"
+".\javafolder\bin\java.exe" -jar ".\fabric.jar" client -dir ".\datadir"
 
 if exist ".\%pwsFabricName%" (
     del /F ".\%pwsFabricName%" >NUL 2>&1
