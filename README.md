@@ -37,6 +37,15 @@ Simply run `portable-minecraft-builder-(win64).bat` (download **[here](https://b
 
 > _Visit [Adoptium's website](https://adoptium.net/)._
 
+- **[Modrinth](https://modrinth.com/)**'s mods:
+  - **[Fabric API](https://modrinth.com/mod/fabric-api)**: Lightweight and modular API providing common hooks and intercompatibility measures utilized by mods using the Fabric toolchain.
+  - **[Iris Shaders](https://modrinth.com/mod/iris)**: A modern shaders mod for Minecraft intended to be compatible with existing OptiFine shader packs.
+  - **[Lithium](https://modrinth.com/mod/lithium)**: No-compromises game logic/server optimization mod.
+  - **[Sodium](https://modrinth.com/mod/sodium)**: Modern rendering engine and client-side optimization mod for Minecraft.
+  - **[Starlight (Fabric)](https://modrinth.com/mod/starlight)**: Rewrites the light engine to fix lighting performance and lighting errors.
+
+> _"The place for Minecraft mods"_
+
 ![separator](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
 ## 🚨 Important 🚨
