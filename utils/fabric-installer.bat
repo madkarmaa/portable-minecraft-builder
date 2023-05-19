@@ -6,7 +6,11 @@ if not exist "%filepath%" (
     echo [31mThe file %filepath% does not exist.[0m
     echo [33mThe launcher is starting. Please log-in, then close it to continue.[0m
 
-    start /W "" "%~dp0javafolder\bin\javaw.exe" -jar "%~dp0launchername" --workdir "%~dp0datadir"
+    set java="%~dp0javafolder\bin\javaw.exe"
+    set launcher="%~dp0launchername"
+    set workingDirectory="%~dp0datadir"
+
+    start /W "" %java% -jar %launcher% --workDir %workingDirectory%
     echo.
 )
 
