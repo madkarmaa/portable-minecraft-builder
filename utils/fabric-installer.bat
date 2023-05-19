@@ -32,7 +32,3 @@ if exist ".\%pwsFabricName%" (
 if exist ".\fabric.jar" (
     del /F ".\fabric.jar" >NUL 2>&1
 )
-
-if exist ".\%~nx0" (
-    del /F ".\%~nx0" >NUL 2>&1
-)
