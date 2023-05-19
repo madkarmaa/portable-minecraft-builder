@@ -15,19 +15,23 @@ set batchUrl=https://raw.githubusercontent.com/madkarmaa/portable-minecraft-buil
 set vbsUrl=https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/master/templates/Minecraft.vbs
 set apiUrl=https://api.github.com/repos/adoptium/temurin17-binaries/releases/latest
 set pwsUrl=https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/master/utils/launcher-downloader.ps1
+set fabricInstallerUrl=https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/master/utils/fabric-installer.bat
 
 set javaMatchPattern=OpenJDK17U-jdk_x64_windows_hotspot*.zip
 
 for %%F in ("%batchUrl%") do set "batchName=%%~nF"
 for %%F in ("%vbsUrl%") do set "vbsName=%%~nF"
 for %%F in ("%pwsUrl%") do set "pwsName=%%~nF"
+for %%F in ("%fabricInstallerUrl%") do set "fabricInstallerName=%%~nF"
 
 set javaFolder=jdk
 set javaZip=java.zip
 set batchName=%batchName%.bat
 set vbsName=%vbsName%.vbs
 set pwsName=%pwsName%.ps1
+set fabricInstallerName=%fabricInstallerName%.bat
 set launcherJar=SKlauncher.jar
+set tempFile=temp
 
 echo [36mPortable Minecraft Builder (Windows 64-bit only)[0m
 echo.
@@ -53,6 +57,7 @@ if exist ".\%launcherJar%" (
 )
 
 powershell -command "(New-Object System.Net.WebClient).DownloadFile('%pwsUrl%', '.\%pwsName%')" >NUL 2>&1
+powershell -command "(New-Object System.Net.WebClient).DownloadFile('%fabricInstallerUrl%', '.\%fabricInstallerName%')" >NUL 2>&1
 
 echo [32mDone.[0m
 
@@ -86,6 +91,13 @@ mkdir ".\%dataFolder%"
 echo [32mDone.[0m
 
 :skipDataFolder
+
+powershell -command "((Get-Content %fabricInstallerName%) -replace 'javafolder', '%javaFolder%' -replace 'datadir', '%dataFolder%') | Set-Content %tempFile%"
+powershell -command "Get-Content %tempFile% | Set-Content %fabricInstallerName%"
+
+if exist ".\%tempFile%" (
+    del /F ".\%tempFile%" >NUL 2>&1
+)
 
 if exist ".\%javaFolder%" (
     echo.
@@ -132,7 +144,7 @@ echo [32mDone.[0m
 echo.
 echo [33mDownloading SKlauncher...[0m
 
-powershell -ExecutionPolicy Bypass -File "%pwsName%"
+powershell -ExecutionPolicy Bypass -File "%pwsName%" >NUL 2>&1
 
 attrib +h ".\%launcherJar%"
 
@@ -149,10 +161,12 @@ echo [32mDone.[0m
 echo.
 echo [33mModifying templates...[0m
 
-set tempFile=temp.bat
-
 powershell -command "((Get-Content %batchName%) -replace 'javafolder', '%javaFolder%' -replace 'launchername', '%launcherJar%' -replace 'datadir', '%dataFolder%') | Set-Content %tempFile%"
 powershell -command "Get-Content %tempFile% | Set-Content %batchName%"
+
+if exist ".\%tempFile%" (
+    del /F ".\%tempFile%" >NUL 2>&1
+)
 
 attrib +h ".\%batchName%"
 
@@ -161,16 +175,16 @@ echo [32mDone.[0m
 echo.
 echo [33mRemoving unnecessary files...[0m
 
-if exist ".\%tempFile%" (
-    del /F ".\%tempFile%" >NUL 2>&1
-)
-
 if exist ".\%javaZip%" (
     del /F ".\%javaZip%" >NUL 2>&1
 )
 
 if exist ".\%pwsName%" (
     del /F ".\%pwsName%" >NUL 2>&1
+)
+
+if exist ".\%fabricInstallerName%" (
+    del /F ".\%fabricInstallerName%" >NUL 2>&1
 )
 
 echo [32mDone.[0m
