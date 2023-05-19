@@ -3,7 +3,10 @@
 set filepath=".\datadir\launcher_profiles.json"
 
 if not exist "%filepath%" (
-    echo [31mThe file "%filepath%" does not exist. Please run the launcher and then try again.[0m
+    echo [31mThe file %filepath% does not exist. Please run the *LAUNCHER* and then try again.[0m
+    if exist ".\%~nx0" (
+        ren ".\%~nx0" "RUN-ME-%~nx0">NUL 2>&1
+    )
     exit /b 1
 )
 
