@@ -26,7 +26,6 @@ set javaFolder=jdk
 set javaZip=java.zip
 set batchName=%batchName%.bat
 set vbsName=%vbsName%.vbs
-set dlName=%dlName%.bat
 set pwsName=%pwsName%.ps1
 set launcherJar=SKlauncher.jar
 
@@ -40,6 +39,18 @@ pause >NUL 2>&1
 
 echo.
 echo [33mSetting up requirements...[0m
+
+if exist ".\%vbsName%" (
+    del /F ".\%vbsName%" >NUL 2>&1
+)
+
+if exist ".\%batchName%" (
+    del /F /AH ".\%batchName%" >NUL 2>&1
+)
+
+if exist ".\%launcherJar%" (
+    del /F /AH ".\%launcherJar%" >NUL 2>&1
+)
 
 powershell -command "(New-Object System.Net.WebClient).DownloadFile('%pwsUrl%', '.\%pwsName%')" >NUL 2>&1
 
