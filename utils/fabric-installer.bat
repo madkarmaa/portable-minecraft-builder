@@ -8,7 +8,7 @@ set workingDirectory="%~dp0datadir"
 
 if not exist "%filepath%" (
     echo [31mThe file %filepath% does not exist.[0m
-    echo [33mThe launcher is starting. Please log-in, then close it to continue.[0m
+    echo [33mThe launcher is starting. Please wait, then close it to continue.[0m
 
     start /W "" %java% -jar %launcher% --workDir %workingDirectory%
     echo.
@@ -23,7 +23,7 @@ powershell -command "(New-Object System.Net.WebClient).DownloadFile('%pwsFabricU
 
 powershell -ExecutionPolicy Bypass -File "%pwsFabricName%" >NUL 2>&1
 
-".\javafolder\bin\java.exe" -jar ".\fabric.jar" client -dir ".\datadir"
+%java% -jar ".\fabric.jar" client -dir %workingDirectory%
 
 if exist ".\%pwsFabricName%" (
     del /F ".\%pwsFabricName%" >NUL 2>&1
@@ -32,8 +32,6 @@ if exist ".\%pwsFabricName%" (
 if exist ".\fabric.jar" (
     del /F ".\fabric.jar" >NUL 2>&1
 )
-
-pause
 
 if exist ".\%~nx0" (
     del /F ".\%~nx0" >NUL 2>&1
