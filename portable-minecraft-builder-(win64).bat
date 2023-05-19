@@ -16,12 +16,14 @@ set vbsUrl=https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builde
 set apiUrl=https://api.github.com/repos/adoptium/temurin17-binaries/releases/latest
 set pwsUrl=https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/master/utils/launcher-downloader.ps1
 set fabricInstallerUrl=https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/master/utils/fabric-installer.bat
+set modsDlUrl=https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/master/utils/mods-downloader.ps1
 
 set javaMatchPattern=OpenJDK17U-jdk_x64_windows_hotspot*.zip
 
 for %%F in ("%batchUrl%") do set "batchName=%%~nF"
 for %%F in ("%vbsUrl%") do set "vbsName=%%~nF"
 for %%F in ("%pwsUrl%") do set "pwsName=%%~nF"
+for %%F in ("%modsDlUrl%") do set "modsDlName=%%~nF"
 for %%F in ("%fabricInstallerUrl%") do set "fabricInstallerName=%%~nF"
 
 set javaFolder=jdk
@@ -29,6 +31,7 @@ set javaZip=java.zip
 set batchName=%batchName%.bat
 set vbsName=%vbsName%.vbs
 set pwsName=%pwsName%.ps1
+set modsDlName=%modsDlName%.ps1
 set fabricInstallerName=%fabricInstallerName%.bat
 set launcherJar=SKlauncher.jar
 set tempFile=temp
@@ -58,6 +61,7 @@ if exist ".\%launcherJar%" (
 
 powershell -command "(New-Object System.Net.WebClient).DownloadFile('%pwsUrl%', '.\%pwsName%')" >NUL 2>&1
 powershell -command "(New-Object System.Net.WebClient).DownloadFile('%fabricInstallerUrl%', '.\%fabricInstallerName%')" >NUL 2>&1
+powershell -command "(New-Object System.Net.WebClient).DownloadFile('%modsDlUrl%', '.\%modsDlName%')" >NUL 2>&1
 
 echo [32mDone.[0m
 
