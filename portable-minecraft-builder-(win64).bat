@@ -183,10 +183,6 @@ if exist ".\%pwsName%" (
     del /F ".\%pwsName%" >NUL 2>&1
 )
 
-if exist ".\%fabricInstallerName%" (
-    del /F ".\%fabricInstallerName%" >NUL 2>&1
-)
-
 echo [32mDone.[0m
 
 echo.
