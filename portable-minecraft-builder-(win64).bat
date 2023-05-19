@@ -30,7 +30,7 @@ set dlName=%dlName%.bat
 set pwsName=%pwsName%.ps1
 set launcherJar=SKlauncher.jar
 
-echo [36mPortable Minecraft Builder (Windows 64 bit only)[0m
+echo [36mPortable Minecraft Builder (Windows 64-bit only)[0m
 echo.
 echo [36mUsing SKlauncher and JDK 17 (Temurin 17 LTS)[0m
 echo [35mVisit https://skmedix.pl/ and https://adoptium.net/ [0m
