@@ -1,4 +1,4 @@
-$r = Invoke-WebRequest -Uri "https://meta.fabricmc.net/v2/versions/installer" -Method GET
+$r = Invoke-WebRequest -UseBasicParsing -Uri "https://meta.fabricmc.net/v2/versions/installer" -Method GET
 
 if ($r.StatusCode -ne 200) {
     throw New-Object System.Exception("Network response was not ok")
