@@ -161,7 +161,10 @@ $buttonInstall.Add_Click({
         }
     }
 
-    Start-Process powershell.exe -ArgumentList "-File", '".\portable-minecraft-builder.ps1"', "-DataFolderName", $textFolder.Text, "-InstallFabric", $switchFabric.Checked, "-InstallMods", $switchMods.Checked -NoNewWindow
+    $installFabricString = if ($switchFabric.Checked) { "true" } else { "false" }
+    $installModsString = if ($switchMods.Checked) { "true" } else { "false" }
+
+    Start-Process -FilePath powershell.exe -ArgumentList "-File", '".\portable-minecraft-builder.ps1"', "-DataFolderName", $textFolder.Text, "-InstallFabric", $installFabricString, "-InstallMods", $installModsString -NoNewWindow
 })
 $form.Controls.Add($buttonInstall)
 
