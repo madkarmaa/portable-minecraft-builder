@@ -10,8 +10,8 @@ New-Item -ItemType Directory -Path ".\$DataFolderName"
 
 $tempfile = "temp"
 $urls = @(
-    "https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/master/templates/minecraft.bat",
-    "https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/master/templates/Minecraft.vbs"
+    "https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/gui/templates/minecraft.bat",
+    "https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/gui/templates/Minecraft.vbs"
 )
 
 foreach ($url in $urls) {

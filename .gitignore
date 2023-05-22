@@ -8,6 +8,5 @@ package.json
 package-lock.json
 /tests-examples
 /tests
-file*
 script*
 latest.json
