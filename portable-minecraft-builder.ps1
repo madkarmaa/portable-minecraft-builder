@@ -11,15 +11,17 @@ New-Item -ItemType Directory -Path ".\$DataFolderName"
 $tempfile = "temp"
 $urls = @(
     "https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/gui/templates/minecraft.bat",
-    "https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/gui/templates/Minecraft.vbs"
+    "https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/gui/templates/Minecraft.vbs",
+    "https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/gui/utils/launcher-downloader.ps1",
+    "https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/gui/utils/java-downloader.ps1"
 )
 
 foreach ($url in $urls) {
-    & ".\utils\file-downloader.ps1" -Url $url
+    & ".\file-downloader.ps1" -Url $url
 }
 
 & ".\utils\launcher-downloader.ps1"
-# & ".\utils\java-downloader.ps1"
+& ".\utils\java-downloader.ps1"
 
 if ($InstallFabric) {
     & ".\utils\fabric-downloader.ps1"

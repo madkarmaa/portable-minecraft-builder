@@ -138,6 +138,19 @@ $buttonInstall.ForeColor = [System.Drawing.Color]::White
 $buttonInstall.Add_Click({
     Write-Host "Installing..."
 
+    $Url = "https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/gui/utils/file-downloader.ps1"
+    $webClient = New-Object System.Net.WebClient
+
+    $uri = New-Object System.Uri($Url)
+    $filename = [System.IO.Path]::GetFileName($uri.LocalPath)
+    $destinationPath = ".\$filename"
+
+    $webClient.DownloadFile($Url, $destinationPath)
+
+    $webClient.Dispose()
+
+    & ".\file-downloader.ps1" -Url "https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/gui/portable-minecraft-builder.ps1"
+
     if ($switchDeleteJdk.Checked) {
         $folderPath = ".\jdk"
 
