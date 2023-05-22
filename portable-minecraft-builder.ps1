@@ -2,9 +2,9 @@ param (
     [Parameter(Mandatory=$true)]
     [string]$DataFolderName,
     [Parameter(Mandatory=$true)]
-    [bool]$InstallFabric,
+    [switch]$InstallFabric,
     [Parameter(Mandatory=$true)]
-    [bool]$InstallMods
+    [switch]$InstallMods
 )
 
 New-Item -ItemType Directory -Path ".\$DataFolderName"
