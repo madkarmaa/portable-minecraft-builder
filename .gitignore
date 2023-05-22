@@ -1,0 +1,13 @@
+test*
+node_modules/
+/test-results/
+/playwright-report/
+/playwright/.cache/
+playwright.config.js
+package.json
+package-lock.json
+/tests-examples
+/tests
+file*
+script*
+latest.json

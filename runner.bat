@@ -1,0 +1,1 @@
+powershell -ExecutionPolicy Bypass -File ".\gui.ps1" >NUL 2>&1
