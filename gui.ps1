@@ -137,6 +137,8 @@ $buttonInstall.BackColor = $accentColor
 $buttonInstall.ForeColor = [System.Drawing.Color]::White
 $buttonInstall.Add_Click({
     Write-Host "Installing..."
+    $buttonInstall.Enabled = $false
+    $buttonInstall.Text = "Installing..."
 
     $Url = "https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/gui/utils/file-downloader.ps1"
     $webClient = New-Object System.Net.WebClient

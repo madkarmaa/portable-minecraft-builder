@@ -1,6 +1,8 @@
 param (
     [Parameter(Mandatory=$true)]
-    [string]$projectName
+    [string]$projectName,
+    [Parameter(Mandatory=$true)]
+    [string]$DataFolderName
 )
 
 $url = "https://api.modrinth.com/v2/project/$projectName/version"
@@ -13,7 +15,7 @@ if ($releaseVersions.Count -gt 0) {
     $url = $firstReleaseVersion.files[0].url
     $filename = $firstReleaseVersion.files[0].filename
 
-    $destinationDirectory = ".\datadir\mods"
+    $destinationDirectory = ".\$DataFolderName\mods"
     $destinationPath = Join-Path $destinationDirectory $filename
 
     # Create missing directories recursively

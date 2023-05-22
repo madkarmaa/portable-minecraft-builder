@@ -8,7 +8,7 @@ param (
 
 New-Item -ItemType Directory -Path ".\$DataFolderName"
 
-$tempfile = "temp"
+# $tempfile = "temp"
 $urls = @(
     "https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/gui/templates/minecraft.bat",
     "https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/gui/templates/Minecraft.vbs",
@@ -23,7 +23,7 @@ foreach ($url in $urls) {
 }
 
 & ".\launcher-downloader.ps1"
-& ".\java-downloader.ps1"
+# & ".\java-downloader.ps1"
 
 if ($InstallFabric) {
     & ".\fabric-downloader.ps1"
