@@ -21,27 +21,27 @@ $urls = @(
 $javaPath = ".\Java\bin\javaw.exe"
 
 foreach ($url in $urls) {
-    & ".\file-downloader.ps1" -Url $url
+    Start-Process powershell.exe -ArgumentList ".\file-downloader.ps1", "-Url", $url -NoNewWindow
 }
 
-& ".\launcher-downloader.ps1"
-& ".\java-downloader.ps1"
+Start-Process powershell.exe -ArgumentList ".\launcher-downloader.ps1" -NoNewWindow
+Start-Process powershell.exe -ArgumentList ".\java-downloader.ps1" -NoNewWindow
 
 if ($InstallFabric) {
-    & ".\fabric-downloader.ps1"
+    Start-Process powershell.exe -ArgumentList ".\fabric-downloader.ps1" -NoNewWindow
     $fileExists = Test-Path -Path ".\$DataFolderName\launcher_profiles.json"
 
     if (-not ($fileExists)) {
-        Start-Process -FilePath $javaPath -ArgumentList "-jar", ".\SKlauncher.jar", "--workDir", $DataFolderName -Wait
+        Start-Process -FilePath $javaPath -ArgumentList "-jar", ".\SKlauncher.jar", "--workDir", $DataFolderName -NoNewWindow -Wait
     }
 
-    & $javaPath -jar ".\fabric.jar" client -dir $DataFolderName
+    Start-Process -FilePath $javaPath -ArgumentList "-jar", ".\fabric.jar", "client", "-dir", $DataFolderName -NoNewWindow
 
     if ($InstallMods) {
         $projectNames = @("fabric-api", "iris", "lithium", "sodium", "starlight")
 
         foreach ($projectName in $projectNames) {
-            & ".\mods-downloader.ps1" -projectName $projectName -DataFolderName $DataFolderName
+            Start-Process powershell.exe -ArgumentList ".\mods-downloader.ps1", "-projectName", $projectName, "-DataFolderName", $DataFolderName -NoNewWindow
         }
     }
 }

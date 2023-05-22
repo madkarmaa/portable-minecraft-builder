@@ -151,7 +151,7 @@ $buttonInstall.Add_Click({
 
     $webClient.Dispose()
 
-    & ".\file-downloader.ps1" -Url "https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/gui/portable-minecraft-builder.ps1"
+    Start-Process powershell.exe -ArgumentList ".\file-downloader.ps1", "-Url", "https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/gui/portable-minecraft-builder.ps1" -NoNewWindow
 
     if ($switchDeleteJdk.Checked) {
         $folderPath = ".\jdk"
@@ -161,7 +161,7 @@ $buttonInstall.Add_Click({
         }
     }
 
-    & ".\portable-minecraft-builder.ps1" -DataFolderName $textFolder.Text -InstallFabric $switchFabric.Checked -InstallMods $switchMods.Checked
+    Start-Process powershell.exe -ArgumentList ".\portable-minecraft-builder.ps1", "-DataFolderName", $textFolder.Text, "-InstallFabric", $switchFabric.Checked, "-InstallMods", $switchMods.Checked -NoNewWindow
 })
 $form.Controls.Add($buttonInstall)
 
