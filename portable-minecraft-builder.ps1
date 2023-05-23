@@ -45,7 +45,7 @@ if ($InstallFabric) {
         $projectNames = @("fabric-api", "iris", "lithium", "sodium", "starlight")
 
         foreach ($projectName in $projectNames) {
-            Start-Process powershell.exe -ArgumentList "-Command", '".\mods-downloader.ps1"', "-projectName", $projectName, "-DataFolderName", $DataFolderName -NoNewWindow
+            Start-Process powershell.exe -ArgumentList "-Command", '".\mods-downloader.ps1"', "-projectName", $projectName, "-DataFolderName", $DataFolderName -NoNewWindow -Wait
         }
     }
 }
