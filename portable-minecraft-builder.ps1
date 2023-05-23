@@ -11,7 +11,7 @@ param (
 $InstallFabric = [bool]::Parse($InstallFabric)
 $InstallMods = [bool]::Parse($InstallMods)
 
-New-Item -ItemType Directory -Path ".\$DataFolderName"
+New-Item -ItemType Directory -Path ".\$DataFolderName" > $null
 
 # $tempfile = "temp"
 $urls = @(
