@@ -20,6 +20,7 @@ $form.ForeColor = [System.Drawing.Color]::White
 
 # Set the accent color to purple
 $accentColor = [System.Drawing.Color]::FromArgb(155, 89, 182)
+$successColor = [System.Drawing.Color]::FromArgb(124, 252, 0)
 
 # Create the label for SKlauncher and JDK 17
 $labelTop = New-Object System.Windows.Forms.Label
@@ -143,6 +144,10 @@ $buttonInstall.Add_Click({
     $buttonInstall.Enabled = $false
     $buttonInstall.Text = "Installing..."
 
+    if ($textFolder.Text -eq '.') {
+        $textFolder.Text = '.minecraft'
+    }
+
     $Url = "https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/gui/utils/file-downloader.ps1"
     $webClient = New-Object System.Net.WebClient
 
@@ -160,8 +165,16 @@ $buttonInstall.Add_Click({
         Remove-Item -Path $folderPath -Recurse
     }
 
-    Start-Process powershell.exe -ArgumentList "-Command", '".\portable-minecraft-builder.ps1"', "-DataFolderName", $textFolder.Text, "-InstallFabric", $switchFabric.Checked.ToString(), "-InstallMods", $switchMods.Checked.ToString() -NoNewWindow -Wait
+    $dlJava = $true
+    if ($switchDeleteJdk.Visible) {
+        $dlJava = $switchDeleteJdk.Checked
+    }
+
+    Start-Process powershell.exe -ArgumentList "-Command", '".\portable-minecraft-builder.ps1"', "-DataFolderName", $textFolder.Text, "-InstallFabric", $switchFabric.Checked.ToString(), "-InstallMods", $switchMods.Checked.ToString(), "-DownloadJava", $dlJava.ToString() -NoNewWindow -Wait
     Remove-Item -Path ".\portable-minecraft-builder.ps1" -Force
+
+    $buttonInstall.BackColor = $successColor
+    $buttonInstall.Text = "Done!"
 })
 $form.Controls.Add($buttonInstall)
 

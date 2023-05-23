@@ -4,12 +4,15 @@ param (
     [Parameter(Mandatory=$true)]
     [string]$InstallFabric,
     [Parameter(Mandatory=$true)]
-    [string]$InstallMods
+    [string]$InstallMods,
+    [Parameter(Mandatory=$true)]
+    [string]$DownloadJava
 )
 
 # Convert the string values to boolean
 $InstallFabric = [bool]::Parse($InstallFabric)
 $InstallMods = [bool]::Parse($InstallMods)
+$DownloadJava = [bool]::Parse($DownloadJava)
 
 New-Item -ItemType Directory -Path ".\$DataFolderName" > $null
 
@@ -32,8 +35,10 @@ Remove-Item -Path ".\file-downloader.ps1" -Force
 Start-Process powershell.exe -ArgumentList "-Command", '".\launcher-downloader.ps1"' -NoNewWindow -Wait
 Remove-Item -Path ".\launcher-downloader.ps1" -Force
 
-Start-Process powershell.exe -ArgumentList "-Command", '".\java-downloader.ps1"' -NoNewWindow -Wait
-Remove-Item -Path ".\java-downloader.ps1" -Force
+if ($DownloadJava) {
+    Start-Process powershell.exe -ArgumentList "-Command", '".\java-downloader.ps1"' -NoNewWindow -Wait
+    Remove-Item -Path ".\java-downloader.ps1" -Force
+}
 
 if ($InstallFabric) {
     Start-Process powershell.exe -ArgumentList "-Command", '".\fabric-downloader.ps1"' -NoNewWindow -Wait
