@@ -16,7 +16,6 @@ $DownloadJava = [bool]::Parse($DownloadJava)
 
 New-Item -ItemType Directory -Path ".\$DataFolderName" > $null
 
-# $tempfile = "temp"
 $urls = @(
     "https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/gui/templates/minecraft.bat",
     "https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/gui/templates/Minecraft.vbs",
@@ -25,7 +24,10 @@ $urls = @(
     "https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/gui/utils/fabric-downloader.ps1",
     "https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/gui/utils/mods-downloader.ps1"
 )
-$javaPath = ".\Java\bin\javaw.exe"
+$tempfile = "temp"
+$javaFolder = "Java"
+$javaPath = ".\$JavaFolder\bin\javaw.exe"
+$launcherJar = 'SKlauncher.jar'
 
 foreach ($url in $urls) {
     Start-Process powershell.exe -ArgumentList "-Command", '".\file-downloader.ps1"', "-Url", $url -NoNewWindow -Wait
@@ -52,7 +54,7 @@ if ($InstallFabric -eq $true) {
         } -NoNewWindow
 
         Write-Host "[33mWaiting for the launcher to be closed...[0m"
-        Start-Process -FilePath $javaPath -ArgumentList "-jar", '".\SKlauncher.jar"', "--workDir", $DataFolderName -NoNewWindow -Wait
+        Start-Process -FilePath $javaPath -ArgumentList "-jar", ".\$launcherJar", "--workDir", $DataFolderName -NoNewWindow -Wait
         Write-Host "[32mSuccessfully installed Fabric[0m"
     }
 
@@ -66,6 +68,14 @@ if ($InstallFabric -eq $true) {
             Start-Process powershell.exe -ArgumentList "-Command", '".\mods-downloader.ps1"', "-projectName", $projectName, "-DataFolderName", $DataFolderName -NoNewWindow -Wait
         }
     }
+}
+
+$filesToEdit = @(".\minecraft.bat", ".\Minecraft.vbs")
+
+foreach ($file in $filesToEdit) {
+    ((Get-Content $file) -replace 'javafolder', "$javaFolder" -replace 'launcherJar', "$launcherJar" -replace 'datadir', "$DataFolderName") | Set-Content $tempfile
+    Get-Content $tempfile | Set-Content $file
+    Remove-Item -Path $tempfile -Force
 }
 
 Remove-Item -Path ".\fabric-downloader.ps1" -Force
