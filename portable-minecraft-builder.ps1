@@ -33,7 +33,7 @@ Start-Process powershell.exe -ArgumentList "-Command", '".\java-downloader.ps1"'
 
 if ($InstallFabric) {
     Start-Process powershell.exe -ArgumentList "-Command", '".\fabric-downloader.ps1"' -NoNewWindow -Wait
-    $fileExists = Test-Path -Path ".\$DataFolderName\launcher_profiles.json"
+    $fileExists = Test-Path -Path ".\$DataFolderName\launcher_profiles.json" > $null
 
     if (-not ($fileExists)) {
         Start-Process -FilePath $javaPath -ArgumentList "-jar", '".\SKlauncher.jar"', "--workDir", $DataFolderName -NoNewWindow -Wait
