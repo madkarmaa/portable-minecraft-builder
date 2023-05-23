@@ -53,6 +53,7 @@ if ($InstallFabric) {
     }
 
     Start-Process -FilePath $javaPath -ArgumentList "-jar", '".\fabric.jar"', "client", "-dir", $DataFolderName -NoNewWindow -Wait
+    Remove-Item -Path ".\fabric.jar" -Force
 
     if ($InstallMods) {
         $projectNames = @("fabric-api", "iris", "lithium", "sodium", "starlight")

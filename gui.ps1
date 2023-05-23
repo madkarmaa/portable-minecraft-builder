@@ -8,6 +8,8 @@ if (-not $is64Bit) {
 
 Add-Type -AssemblyName System.Windows.Forms
 
+$folderPath = ".\Java"
+
 # Create the form
 $form = New-Object System.Windows.Forms.Form
 $form.Text = "Portable Minecraft Builder (win64)"
@@ -25,11 +27,11 @@ $labelTop.Location = New-Object System.Drawing.Point(10, 10)
 $labelTop.AutoSize = $true
 $labelTop.Text = "Using SKlauncher and JDK 17 (Temurin 17 LTS). Visit https://skmedix.pl/ and https://adoptium.net/"
 $labelTop.ForeColor = $accentColor
-$labelTop.Font = "Comic Sans,20"
+# $labelTop.Font = "Comic Sans,20"
 $form.Controls.Add($labelTop)
 
 # Check if the "jdk" folder exists in the current directory
-$jdkFolderExists = Test-Path -Path ".\jdk" -PathType Container
+$jdkFolderExists = Test-Path -Path $folderPath -PathType Container
 
 # Create a label for the "Install Fabric" switch
 $labelDeleteJdk = New-Object System.Windows.Forms.Label
@@ -44,7 +46,7 @@ $switchDeleteJdk = New-Object System.Windows.Forms.CheckBox
 $switchDeleteJdk.Location = New-Object System.Drawing.Point(210, 165)
 $switchDeleteJdk.Size = New-Object System.Drawing.Size(20, 30)
 $switchDeleteJdk.Add_CheckStateChanged({
-    Write-Host "Delete JDK:" $switchDeleteJdk.Checked
+    Write-Host "Delete Java:" $switchDeleteJdk.Checked
 })
 $form.Controls.Add($switchDeleteJdk)
 
@@ -155,14 +157,11 @@ $buttonInstall.Add_Click({
     Start-Process powershell.exe -ArgumentList "-Command", '".\file-downloader.ps1"', "-Url", '"https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/gui/portable-minecraft-builder.ps1"' -NoNewWindow -Wait
 
     if ($switchDeleteJdk.Checked) {
-        $folderPath = ".\jdk"
-
-        if (Test-Path -Path $folderPath) {
-            Remove-Item -Path $folderPath -Recurse
-        }
+        Remove-Item -Path $folderPath -Recurse
     }
 
-    Start-Process powershell.exe -ArgumentList "-Command", '".\portable-minecraft-builder.ps1"', "-DataFolderName", $textFolder.Text, "-InstallFabric", $switchFabric.Checked.ToString(), "-InstallMods", $switchMods.Checked.ToString() -NoNewWindow
+    Start-Process powershell.exe -ArgumentList "-Command", '".\portable-minecraft-builder.ps1"', "-DataFolderName", $textFolder.Text, "-InstallFabric", $switchFabric.Checked.ToString(), "-InstallMods", $switchMods.Checked.ToString() -NoNewWindow -Wait
+    Remove-Item -Path ".\portable-minecraft-builder.ps1" -Force
 })
 $form.Controls.Add($buttonInstall)
 

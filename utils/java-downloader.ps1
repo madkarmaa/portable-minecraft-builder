@@ -15,6 +15,7 @@ $javaZip = Invoke-RestMethod -Uri $apiUrl |
 
 # Extract the downloaded ZIP file using tar
 Start-Process tar -ArgumentList "-xf", ".\$javaZip", "-C", "." -NoNewWindow -Wait
+Remove-Item -Path ".\$javaZip" -Force
 
 # Rename the extracted folder to "jdk"
 $extractedFolder = Get-ChildItem -Directory | Where-Object { $_.Name -like "jdk*" }
