@@ -176,6 +176,12 @@ $buttonInstall.Add_Click({
     $buttonInstall.BackColor = $successColor
     $buttonInstall.Text = "Done!"
 })
+
+$form.Add_FormClosed({
+    $scriptPath = $MyInvocation.MyCommand.Path
+    Remove-Item -Path $scriptPath -Force
+})
+
 $form.Controls.Add($buttonInstall)
 
 # Show the form

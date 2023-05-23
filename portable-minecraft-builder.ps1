@@ -48,8 +48,8 @@ if ($InstallFabric) {
     if (-not ($fileExists)) {
         Start-Process powershell.exe -ArgumentList "-Command", {
             Add-Type -AssemblyName System.Windows.Forms
-            [System.Windows.Forms.MessageBox]::Show('The file launcher_profiles.json does not exist. The launcher is starting, wait then close it.')
-        } -NoNewWindow > $null
+            [System.Windows.Forms.MessageBox]::Show('The file launcher_profiles.json does not exist. The launcher is starting, wait then close it.') > $null
+        } -NoNewWindow
 
         Write-Host "[33mWaiting for the launcher to be closed...[0m"
         Start-Process -FilePath $javaPath -ArgumentList "-jar", '".\SKlauncher.jar"', "--workDir", $DataFolderName -NoNewWindow -Wait
