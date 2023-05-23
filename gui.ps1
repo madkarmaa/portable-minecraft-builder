@@ -1,7 +1,7 @@
 $is64Bit = [System.Environment]::Is64BitOperatingSystem
 
 if (-not $is64Bit) {
-    Write-Host "This script requires a 64-bit operating system."
+    Write-Host "[31mThis script requires a 64-bit operating system.[0m"
     Pause
     Exit
 }
@@ -140,7 +140,7 @@ $buttonInstall.Top = $form.ClientSize.Height - $buttonInstall.Height - 50
 $buttonInstall.BackColor = $accentColor
 $buttonInstall.ForeColor = [System.Drawing.Color]::White
 $buttonInstall.Add_Click({
-    Write-Host "Installing..."
+    Write-Host "`n[35m========== INSTALLATION START ==========[0m`n"
     $buttonInstall.Enabled = $false
     $buttonInstall.Text = "Installing..."
 
@@ -175,6 +175,8 @@ $buttonInstall.Add_Click({
 
     $buttonInstall.BackColor = $successColor
     $buttonInstall.Text = "Done!"
+
+    Write-Host "`n[35m========== INSTALLATION END ==========[0m`n"
 })
 $form.Controls.Add($buttonInstall)
 
