@@ -37,12 +37,11 @@ Remove-Item -Path ".\launcher-downloader.ps1" -Force
 
 if ($DownloadJava) {
     Start-Process powershell.exe -ArgumentList "-Command", '".\java-downloader.ps1"' -NoNewWindow -Wait
-    Remove-Item -Path ".\java-downloader.ps1" -Force
 }
+Remove-Item -Path ".\java-downloader.ps1" -Force
 
 if ($InstallFabric) {
     Start-Process powershell.exe -ArgumentList "-Command", '".\fabric-downloader.ps1"' -NoNewWindow -Wait
-    Remove-Item -Path ".\fabric-downloader.ps1" -Force
 
     $fileExists = Test-Path -Path ".\$DataFolderName\launcher_profiles.json" > $null
 
@@ -66,6 +65,8 @@ if ($InstallFabric) {
         foreach ($projectName in $projectNames) {
             Start-Process powershell.exe -ArgumentList "-Command", '".\mods-downloader.ps1"', "-projectName", $projectName, "-DataFolderName", $DataFolderName -NoNewWindow -Wait
         }
-        Remove-Item -Path ".\mods-downloader.ps1" -Force
     }
 }
+
+Remove-Item -Path ".\fabric-downloader.ps1" -Force
+Remove-Item -Path ".\mods-downloader.ps1" -Force
