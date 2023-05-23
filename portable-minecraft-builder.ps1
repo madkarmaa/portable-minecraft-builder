@@ -27,21 +27,29 @@ $javaPath = ".\Java\bin\javaw.exe"
 foreach ($url in $urls) {
     Start-Process powershell.exe -ArgumentList "-Command", '".\file-downloader.ps1"', "-Url", $url -NoNewWindow -Wait
 }
+Remove-Item -Path ".\file-downloader.ps1" -Force
 
 Start-Process powershell.exe -ArgumentList "-Command", '".\launcher-downloader.ps1"' -NoNewWindow -Wait
+Remove-Item -Path ".\launcher-downloader.ps1" -Force
+
 Start-Process powershell.exe -ArgumentList "-Command", '".\java-downloader.ps1"' -NoNewWindow -Wait
+Remove-Item -Path ".\java-downloader.ps1" -Force
 
 if ($InstallFabric) {
     Start-Process powershell.exe -ArgumentList "-Command", '".\fabric-downloader.ps1"' -NoNewWindow -Wait
+    Remove-Item -Path ".\fabric-downloader.ps1" -Force
+
     $fileExists = Test-Path -Path ".\$DataFolderName\launcher_profiles.json" > $null
 
     if (-not ($fileExists)) {
         Start-Process powershell.exe -ArgumentList "-Command", {
             Add-Type -AssemblyName System.Windows.Forms
             [System.Windows.Forms.MessageBox]::Show('The file launcher_profiles.json does not exist. The launcher is starting, wait then close it.')
-        } -NoNewWindow
+        } -NoNewWindow > $null
 
+        Write-Host "[33mWaiting for the launcher to be closed...[0m"
         Start-Process -FilePath $javaPath -ArgumentList "-jar", '".\SKlauncher.jar"', "--workDir", $DataFolderName -NoNewWindow -Wait
+        Write-Host "[32mSuccessfully installed Fabric[0m"
     }
 
     Start-Process -FilePath $javaPath -ArgumentList "-jar", '".\fabric.jar"', "client", "-dir", $DataFolderName -NoNewWindow -Wait
@@ -52,5 +60,6 @@ if ($InstallFabric) {
         foreach ($projectName in $projectNames) {
             Start-Process powershell.exe -ArgumentList "-Command", '".\mods-downloader.ps1"', "-projectName", $projectName, "-DataFolderName", $DataFolderName -NoNewWindow -Wait
         }
+        Remove-Item -Path ".\mods-downloader.ps1" -Force
     }
 }
