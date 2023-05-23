@@ -34,7 +34,7 @@ $form.Controls.Add($labelTop)
 # Check if the "jdk" folder exists in the current directory
 $jdkFolderExists = Test-Path -Path $folderPath -PathType Container
 
-# Create a label for the "Install Fabric" switch
+# Create a label for the "Delete Java folder" switch
 $labelDeleteJdk = New-Object System.Windows.Forms.Label
 $labelDeleteJdk.Location = New-Object System.Drawing.Point(10, 170)
 $labelDeleteJdk.Size = New-Object System.Drawing.Size(200, 30)
@@ -42,7 +42,7 @@ $labelDeleteJdk.Text = "Delete pre-existing Java folder?"
 $labelDeleteJdk.ForeColor = $accentColor
 $form.Controls.Add($labelDeleteJdk)
 
-# Create a switch for the "Install Fabric" option
+# Create a switch for the "Delete Java folder" option
 $switchDeleteJdk = New-Object System.Windows.Forms.CheckBox
 $switchDeleteJdk.Location = New-Object System.Drawing.Point(210, 165)
 $switchDeleteJdk.Size = New-Object System.Drawing.Size(20, 30)
@@ -51,6 +51,32 @@ $switchDeleteJdk.Add_CheckStateChanged({
 })
 $form.Controls.Add($switchDeleteJdk)
 
+# Create a label for the "Delete data folder" switch
+$labelDeleteData = New-Object System.Windows.Forms.Label
+$labelDeleteData.Location = New-Object System.Drawing.Point(10, 210)
+$labelDeleteData.Size = New-Object System.Drawing.Size(200, 30)
+$labelDeleteData.Text = "Delete pre-existing data folder?"
+$labelDeleteData.ForeColor = $accentColor
+$form.Controls.Add($labelDeleteData)
+
+# Create a switch for the "Delete data folder" option
+$switchDeleteData = New-Object System.Windows.Forms.CheckBox
+$switchDeleteData.Location = New-Object System.Drawing.Point(210, 205)
+$switchDeleteData.Size = New-Object System.Drawing.Size(20, 30)
+$switchDeleteData.Add_CheckStateChanged({
+    Write-Host "Delete data folder:" $switchDeleteData.Checked
+})
+$form.Controls.Add($switchDeleteData)
+
+$dataFolderExists = Test-Path -Path ".\.minecraft" -PathType Container
+
+if ($dataFolderExists) {
+    $labelDeleteData.Visible = $true
+    $switchDeleteData.Visible = $true
+} else {
+    $labelDeleteData.Visible = $false
+    $switchDeleteData.Visible = $false
+}
 
 if ($jdkFolderExists) {
     $labelDeleteJdk.Visible = $true
@@ -83,6 +109,17 @@ $textFolder.Add_TextChanged({
     }
     $textFolder.Text = $newText
     $textFolder.SelectionStart = $newText.Length
+
+    $dataFolderExists = Test-Path -Path ".\$newText" -PathType Container
+
+    if ($dataFolderExists) {
+        $labelDeleteData.Visible = $true
+        $switchDeleteData.Visible = $true
+    } else {
+        $labelDeleteData.Visible = $false
+        $switchDeleteData.Visible = $false
+    }
+
     Write-Host "Custom data folder name changed: $newText"
 })
 $form.Controls.Add($textFolder)
@@ -148,6 +185,8 @@ $buttonInstall.Add_Click({
         $textFolder.Text = '.minecraft'
     }
 
+    $mcDataFolderExists = Test-Path -Path (Join-Path -Path ".\" -ChildPath $textFolder.Text) -PathType Container
+
     $Url = "https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/gui/utils/file-downloader.ps1"
     $webClient = New-Object System.Net.WebClient
 
@@ -166,8 +205,17 @@ $buttonInstall.Add_Click({
         $dlJava = $switchDeleteJdk.Checked
     }
 
-    if ($dlJava) {
+    if ($dlJava -and $jdkFolderExists) {
         Remove-Item -Path $folderPath -Recurse
+    }
+
+    $removeData = $true
+    if ($switchDeleteData.Visible) {
+        $removeData = $switchDeleteData.Checked
+    }
+
+    if ($removeData -and $mcDataFolderExists) {
+        Remove-Item -Path (Join-Path -Path ".\" -ChildPath $textFolder.Text) -Recurse
     }
 
     Start-Process powershell.exe -ArgumentList "-Command", '".\portable-minecraft-builder.ps1"', "-DataFolderName", $textFolder.Text, "-InstallFabric", $switchFabric.Checked.ToString(), "-InstallMods", $switchMods.Checked.ToString(), "-DownloadJava", $dlJava.ToString() -NoNewWindow -Wait
@@ -182,6 +230,3 @@ $form.Controls.Add($buttonInstall)
 
 # Show the form
 [void]$form.ShowDialog()
-
-$scriptPath = $MyInvocation.MyCommand.Path
-Remove-Item -Path $scriptPath -Force
