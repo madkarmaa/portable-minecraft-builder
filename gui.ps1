@@ -176,7 +176,7 @@ $buttonInstall.Add_Click({
     $buttonInstall.BackColor = $successColor
     $buttonInstall.Text = "Done!"
 
-    Write-Host "`n[35m========== INSTALLATION END ==========[0m`n"
+    Write-Host "`n[35m========== INSTALLATION END ==========[0m"
 })
 $form.Controls.Add($buttonInstall)
 
