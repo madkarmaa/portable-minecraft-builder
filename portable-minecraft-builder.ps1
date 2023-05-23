@@ -25,7 +25,7 @@ $urls = @(
 $javaPath = ".\Java\bin\javaw.exe"
 
 foreach ($url in $urls) {
-    Start-Process powershell.exe -ArgumentList "-Command", '".\file-downloader.ps1"', "-Url", $url -NoNewWindow
+    Start-Process powershell.exe -ArgumentList "-Command", '".\file-downloader.ps1"', "-Url", $url -NoNewWindow -Wait
 }
 
 Start-Process powershell.exe -ArgumentList "-Command", '".\launcher-downloader.ps1"' -NoNewWindow
