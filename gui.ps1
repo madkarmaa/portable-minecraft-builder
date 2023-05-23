@@ -161,13 +161,13 @@ $buttonInstall.Add_Click({
 
     Start-Process powershell.exe -ArgumentList "-Command", '".\file-downloader.ps1"', "-Url", '"https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/gui/portable-minecraft-builder.ps1"' -NoNewWindow -Wait
 
-    if ($switchDeleteJdk.Checked) {
-        Remove-Item -Path $folderPath -Recurse
-    }
-
     $dlJava = $true
     if ($switchDeleteJdk.Visible) {
         $dlJava = $switchDeleteJdk.Checked
+    }
+
+    if ($dlJava) {
+        Remove-Item -Path $folderPath -Recurse
     }
 
     Start-Process powershell.exe -ArgumentList "-Command", '".\portable-minecraft-builder.ps1"', "-DataFolderName", $textFolder.Text, "-InstallFabric", $switchFabric.Checked.ToString(), "-InstallMods", $switchMods.Checked.ToString(), "-DownloadJava", $dlJava.ToString() -NoNewWindow -Wait
