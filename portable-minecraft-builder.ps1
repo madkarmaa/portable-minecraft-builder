@@ -55,10 +55,10 @@ if ($InstallFabric -eq $true) {
 
         Write-Host "[33mWaiting for the launcher to be closed...[0m"
         Start-Process -FilePath $javaPath -ArgumentList "-jar", ".\$launcherJar", "--workDir", $DataFolderName -NoNewWindow -Wait
-        Write-Host "[32mSuccessfully installed Fabric[0m"
     }
 
     Start-Process -FilePath $javaPath -ArgumentList "-jar", '".\fabric.jar"', "client", "-dir", $DataFolderName -NoNewWindow -Wait
+    Write-Host "[32mSuccessfully installed Fabric[0m"
     Remove-Item -Path ".\fabric.jar" -Force
 
     if ($InstallMods -eq $true) {
@@ -73,7 +73,7 @@ if ($InstallFabric -eq $true) {
 $filesToEdit = @(".\minecraft.bat", ".\Minecraft.vbs")
 
 foreach ($file in $filesToEdit) {
-    ((Get-Content $file) -replace 'javafolder', "$javaFolder" -replace 'launcherJar', "$launcherJar" -replace 'datadir', "$DataFolderName") | Set-Content $tempfile
+    ((Get-Content $file) -replace 'javafolder', "$javaFolder" -replace 'launcherjar', "$launcherJar" -replace 'datadir', "$DataFolderName") | Set-Content $tempfile
     Get-Content $tempfile | Set-Content $file
     Remove-Item -Path $tempfile -Force
 }
