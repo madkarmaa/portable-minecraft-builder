@@ -22,9 +22,10 @@ $accentColor = [System.Drawing.Color]::FromArgb(155, 89, 182)
 # Create the label for SKlauncher and JDK 17
 $labelTop = New-Object System.Windows.Forms.Label
 $labelTop.Location = New-Object System.Drawing.Point(10, 10)
-$labelTop.Size = New-Object System.Drawing.Size(600, 30)
+$labelTop.AutoSize = $true
 $labelTop.Text = "Using SKlauncher and JDK 17 (Temurin 17 LTS). Visit https://skmedix.pl/ and https://adoptium.net/"
 $labelTop.ForeColor = $accentColor
+$labelTop.Font = "Comic Sans,20"
 $form.Controls.Add($labelTop)
 
 # Check if the "jdk" folder exists in the current directory
@@ -161,7 +162,7 @@ $buttonInstall.Add_Click({
         }
     }
 
-    Start-Process powershell.exe -ArgumentList "-Command", '".\portable-minecraft-builder.ps1"', "-DataFolderName", $textFolder.Text, "-InstallFabric", $switchFabric.Checked, "-InstallMods", $switchMods.Checked -NoNewWindow
+    Start-Process powershell.exe -ArgumentList "-Command", '".\portable-minecraft-builder.ps1"', "-DataFolderName", $textFolder.Text, "-InstallFabric", $switchFabric.Checked.ToString(), "-InstallMods", $switchMods.Checked.ToString() -NoNewWindow
 })
 $form.Controls.Add($buttonInstall)
 

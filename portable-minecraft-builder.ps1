@@ -2,10 +2,14 @@ param (
     [Parameter(Mandatory=$true)]
     [string]$DataFolderName,
     [Parameter(Mandatory=$true)]
-    [bool]$InstallFabric,
+    [string]$InstallFabric,
     [Parameter(Mandatory=$true)]
-    [bool]$InstallMods
+    [string]$InstallMods
 )
+
+# Convert the string values to boolean
+$InstallFabric = [bool]::Parse($InstallFabric)
+$InstallMods = [bool]::Parse($InstallMods)
 
 New-Item -ItemType Directory -Path ".\$DataFolderName"
 
