@@ -5,7 +5,7 @@
 
 > _Icon from the [Minecraft Wiki](https://minecraft.fandom.com/wiki/Minecraft_Launcher?file=Minecraft_Launcher_MS_Icon.png)_
 
-A batch script that creates a portable Minecraft installation that you can use from **any Windows PC**, just put it in a USB drive 😉
+A PowerShell script that creates a portable Minecraft installation that you can use from **any Windows PC**, just put it in a USB drive 😉
 
 ![separator](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
@@ -19,7 +19,7 @@ It uses 64-bit resources/software, so it's meant for **64-bit Windows only**.
 
 ## ❓ How to use
 
-Simply run `portable-minecraft-builder-(win64).bat` (download **[here](https://bit.ly/portable-mc)**). You'll be prompted to enter some personalization settings, then just let the script do its thing 😉. It will delete all the unnecessary files by itself. Further instructions/information are available at script runtime.
+Simply run `portable-minecraft-builder-(win64).bat` (download **[here](https://bit.ly/portable-mc-gui)**). A Graphical User Interface (GUI) will pop-up. Adjust the settings, then click install and let the script do its thing 😉. It will delete all the unnecessary files by itself. Further instructions/information are available at script runtime.
 
 ![separator](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
@@ -49,8 +49,6 @@ Simply run `portable-minecraft-builder-(win64).bat` (download **[here](https://b
 ![separator](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
 ## 🎥 Demo
-
-https://github.com/madkarmaa/portable-minecraft-builder/assets/100418457/1e4c5832-82ad-469f-bf2b-9a2c7cb60105
 
 ![separator](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
