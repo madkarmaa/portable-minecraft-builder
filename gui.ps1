@@ -110,7 +110,7 @@ $textFolder.Add_TextChanged({
     $textFolder.Text = $newText
     $textFolder.SelectionStart = $newText.Length
 
-    $dataFolderExists = Test-Path -Path ".\$newText" -PathType Container
+    $dataFolderExists = (Test-Path -Path ".\$newText" -PathType Container) -and ($newText -ne ".")
 
     if ($dataFolderExists) {
         $labelDeleteData.Visible = $true
@@ -181,8 +181,11 @@ $buttonInstall.Add_Click({
     $buttonInstall.Enabled = $false
     $buttonInstall.Text = "Installing..."
 
-    if ($textFolder.Text -eq '.') {
-        $textFolder.Text = '.minecraft'
+    $invalidChars = [IO.Path]::GetInvalidFileNameChars()
+
+    # Check if the input text is "." or contains any invalid characters
+    if ($textFolder.Text -eq "." -or $textFolder.Text -match "[{0}]" -f [RegEx]::Escape($invalidChars)) {
+        $textFolder.Text = ".minecraft"
     }
 
     $mcDataFolderExists = Test-Path -Path (Join-Path -Path ".\" -ChildPath $textFolder.Text) -PathType Container
