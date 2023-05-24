@@ -37,4 +37,4 @@ Remove-Item -Path ".\$javaZip" -Force
 # Rename the extracted folder to "jdk"
 $extractedFolder = Get-ChildItem -Directory | Where-Object { $_.Name -like "jdk*" }
 $newFolderName = "Java"
-Rename-Item -Path $extractedFolder.FullName -NewName $newFolderName
+Rename-Item -Path $extractedFolder.FullName -NewName $newFolderName -Force
