@@ -5,6 +5,23 @@ param (
     [string]$DataFolderName
 )
 
+$ErrorActionPreference = 'Stop'
+
+Trap {
+    $errorMessage = $_.Exception.Message
+    $logFilePath = ".\ErrorLog.txt"
+
+    # Display an error message to the user
+    Write-Host "[31mAn error occurred, check the log file for more details: $logFilePath[0m"
+
+    # Log the error to a file
+    $errorMessage | Out-File -FilePath $logFilePath -Append
+
+    # Wait for user input before closing the script
+    Pause
+    Exit 1
+}
+
 $url = "https://api.modrinth.com/v2/project/$projectName/version"
 $response = Invoke-RestMethod -Uri $url -Method GET
 

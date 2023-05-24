@@ -9,6 +9,23 @@ param (
     [string]$DownloadJava
 )
 
+$ErrorActionPreference = 'Stop'
+
+Trap {
+    $errorMessage = $_.Exception.Message
+    $logFilePath = ".\ErrorLog.txt"
+
+    # Display an error message to the user
+    Write-Host "[31mAn error occurred, check the log file for more details: $logFilePath[0m"
+
+    # Log the error to a file
+    $errorMessage | Out-File -FilePath $logFilePath -Append
+
+    # Wait for user input before closing the script
+    Pause
+    Exit 1
+}
+
 # Convert the string values to boolean
 $InstallFabric = [bool]::Parse($InstallFabric)
 $InstallMods = [bool]::Parse($InstallMods)
