@@ -19,7 +19,7 @@ It uses 64-bit resources/software, so it's meant for **64-bit Windows only**.
 
 ## ❓ How to use
 
-Simply run `portable-minecraft-builder-(win64).bat` (download **[here](https://bit.ly/portable-mc-gui)**). A Graphical User Interface (GUI) will pop-up. Adjust the settings, then click install and let the script do its thing 😉. It will delete all the unnecessary files by itself. Further instructions/information are available at script runtime.
+Simply run `portable-minecraft-builder-(win64).bat` (download **[here](https://bit.ly/portable-mc-gui)**). A Graphical User Interface (GUI) will pop-up. Adjust the settings, then click "Install" and let the script do its thing 😉. It will delete all the unnecessary files by itself. Further instructions/information are available at script runtime.
 
 ![separator](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
