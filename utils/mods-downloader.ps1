@@ -44,7 +44,7 @@ $minecraftVersion = GetMinecraftReleaseVersion
 $url = "https://api.modrinth.com/v2/project/$projectName/version"
 $response = Invoke-RestMethod -Uri $url -Method GET
 
-$matchingFiles = $response | Where-Object { ($_.version_type -eq "release") -and ($_.loaders -contains "fabric") -and ($_.game_versions -contains $minecraftVersion) }
+[array]$matchingFiles = $response | Where-Object { ($_.version_type -eq "release") -and ($_.loaders -contains "fabric") -and ($_.game_versions -contains $minecraftVersion) }
 
 if ($matchingFiles.Count -gt 0) {
     $fileToDownload = $null
