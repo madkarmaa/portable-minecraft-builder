@@ -32,18 +32,34 @@ Trap {
     Exit 1
 }
 
+function GetMinecraftReleaseVersion {
+    $apiUrl = "https://launchermeta.mojang.com/mc/game/version_manifest.json"
+    $response = Invoke-RestMethod -Uri $apiUrl
+    $latestReleaseVersion = $response.versions | Where-Object { $_.type -eq "release" } | Select-Object -First 1 -ExpandProperty id
+    $latestReleaseVersion
+}
+
+$minecraftVersion = GetMinecraftReleaseVersion
+
 $url = "https://api.modrinth.com/v2/project/$projectName/version"
 $response = Invoke-RestMethod -Uri $url -Method GET
 
-$releaseVersions = $response | Where-Object { $_.version_type -eq "release" }
+$matchingFiles = $response | Where-Object { ($_.version_type -eq "release") -and ($_.loaders -contains "fabric") -and ($_.game_versions -contains $minecraftVersion) }
 
-if ($releaseVersions.Count -gt 0) {
-    $firstReleaseVersion = $releaseVersions[0]
-    $url = $firstReleaseVersion.files[0].url
-    $filename = $firstReleaseVersion.files[0].filename
+if ($matchingFiles.Count -gt 0) {
+    $fileToDownload = $null
+
+    foreach ($file in $matchingFiles[0].files) {
+        $fileToDownload = $file | Where-Object { ($_.primary -eq "true") }
+        break
+    }
+
+    $modFile = $fileToDownload.filename
+    $modUrl = $fileToDownload.url
+    $modName = $modFile -replace "\.jar$"
 
     $destinationDirectory = ".\$DataFolderName\mods"
-    $destinationPath = Join-Path $destinationDirectory $filename
+    $destinationPath = Join-Path $destinationDirectory $modFile
 
     # Create missing directories recursively
     if (-not (Test-Path $destinationDirectory)) {
@@ -51,8 +67,8 @@ if ($releaseVersions.Count -gt 0) {
     }
 
     $webClient = New-Object System.Net.WebClient
-    $webClient.DownloadFile($url, $destinationPath)
-    Write-Host "Successfully installed[32m" $firstReleaseVersion.name "[0m"
+    $webClient.DownloadFile($modUrl, $destinationPath)
+    Write-Host "Successfully installed [32m$modName[0m"
 } else {
-    Write-Host "[31mNo release versions found.[0m"
+    Write-Host "[31mNo matching files found for '$projectName'.[0m"
 }

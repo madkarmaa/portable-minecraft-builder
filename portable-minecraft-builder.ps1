@@ -108,7 +108,7 @@ if ($InstallFabric -eq $true) {
     Write-Host "[32mDone[0m"
 
     if ($InstallMods -eq $true) {
-        $projectNames = @("fabric-api", "iris", "lithium", "sodium", "starlight")
+        $projectNames = @("fabric-api", "iris", "lithium", "sodium", "starlight", "memoryleakfix", "krypton", "ferrite-core", "better-ping-display-fabric", "dynamic-fps", "modmenu")
 
         Write-Host "`n[33mInstalling mods...[0m`n"
 

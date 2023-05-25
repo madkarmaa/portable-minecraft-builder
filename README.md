@@ -21,6 +21,8 @@ It uses 64-bit resources/software, so it's meant for **64-bit Windows only**.
 
 Simply run `portable-minecraft-builder-(win64).bat` (download **[here](https://bit.ly/portable-mc-gui)**). A Graphical User Interface (GUI) will pop-up. Adjust the settings, then click "Install" and let the script do its thing 😉. It will delete all the unnecessary files by itself. Further instructions/information are available at script runtime.
 
+> There's also a [CLI version](https://github.com/madkarmaa/portable-minecraft-builder/tree/master) of this script, but I'm no longer going to update it.
+
 ![separator](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
 ## 🛠️ Tools and files used
@@ -37,12 +39,19 @@ Simply run `portable-minecraft-builder-(win64).bat` (download **[here](https://b
 
 > _Visit [Adoptium's website](https://adoptium.net/)._
 
-- **[Modrinth](https://modrinth.com/)**'s mods:
-  - **[Fabric API](https://modrinth.com/mod/fabric-api)**: Lightweight and modular API providing common hooks and intercompatibility measures utilized by mods using the Fabric toolchain.
-  - **[Iris Shaders](https://modrinth.com/mod/iris)**: A modern shaders mod for Minecraft intended to be compatible with existing OptiFine shader packs.
-  - **[Lithium](https://modrinth.com/mod/lithium)**: No-compromises game logic/server optimization mod.
-  - **[Sodium](https://modrinth.com/mod/sodium)**: Modern rendering engine and client-side optimization mod for Minecraft.
-  - **[Starlight (Fabric)](https://modrinth.com/mod/starlight)**: Rewrites the light engine to fix lighting performance and lighting errors.
+- **[Modrinth](https://modrinth.com/)**'s mods used:
+
+  - [Fabric API](https://modrinth.com/mod/fabric-api)
+  - [Iris Shaders](https://modrinth.com/mod/iris)
+  - [Lithium](https://modrinth.com/mod/lithium)
+  - [Sodium](https://modrinth.com/mod/sodium)
+  - [Starlight (Fabric)](https://modrinth.com/mod/starlight)
+  - [Memory Leak Fix](https://modrinth.com/mod/memoryleakfix)
+  - [Krypton](https://modrinth.com/mod/krypton)
+  - [FerriteCore](https://modrinth.com/mod/ferrite-core)
+  - [Better Ping Display [Fabric]](https://modrinth.com/mod/better-ping-display-fabric)
+  - [Dynamic FPS](https://modrinth.com/mod/dynamic-fps)
+  - [Mod Menu](https://modrinth.com/mod/modmenu)
 
 > _"The place for Minecraft mods"_
 
