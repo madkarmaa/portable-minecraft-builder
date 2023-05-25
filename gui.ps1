@@ -9,14 +9,24 @@ if (-not $is64Bit) {
 $ErrorActionPreference = 'Stop'
 
 Trap {
-    $errorMessage = $_.Exception.Message
+    $errorMessage = $_.Exception
+
+    # Get the error record containing file, line, and column information
+    $errorRecord = $_.InvocationInfo.ScriptLineNumber
+    $fileName = $_.InvocationInfo.ScriptName
+    $line = $_.InvocationInfo.Line
+    $column = $_.InvocationInfo.OffsetInLine
+
+    # Format the error message
+    $formattedMessage = "`nError in file '$fileName' at line $line, column $column :`n`n$errorMessage"
+
     $logFilePath = ".\ErrorLog.txt"
 
     # Display an error message to the user
     Write-Host "[31mAn error occurred, check the log file for more details: $logFilePath[0m"
 
     # Log the error to a file
-    $errorMessage | Out-File -FilePath $logFilePath -Append
+    $formattedMessage | Out-File -FilePath $logFilePath -Append
 
     # Wait for user input before closing the script
     Pause
@@ -65,6 +75,21 @@ $labelTop.Text = "Using SKlauncher and JDK 17 (Temurin 17 LTS)."
 $labelTop.ForeColor = $accentColor4
 $labelTop.Font = "Lucida Console Regular,10, style=Underline"
 $form.Controls.Add($labelTop)
+
+# Create a label for the logo
+$labelLogo = New-Object System.Windows.Forms.Label
+$labelLogo.Anchor = [System.Windows.Forms.AnchorStyles]::None
+$labelLogo.Top = 10
+$labelLogo.Size = New-Object System.Drawing.Size(100, 50)
+$labelLogo.Left = ($form.ClientSize.Width - $labelLogo.Width) - 10
+$labelLogo.Text = 'mk'
+$labelLogo.Font = "Lucida Console Regular,40"
+$labelLogo.ForeColor = $accentColor2
+$labelLogo.Add_Click({
+    $url = "https://github.com/madkarmaa/"
+    Start-Process $url
+})
+$form.Controls.Add($labelLogo)
 
 # Check if the "jdk" folder exists in the current directory
 $jdkFolderExists = Test-Path -Path $folderPath -PathType Container
