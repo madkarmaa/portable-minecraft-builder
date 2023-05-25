@@ -3,6 +3,8 @@
   Portable Minecraft Builder
 </h1>
 
+## [DISCONTINUED] I'm no longer going to update the CLI version, switch to [this](https://github.com/madkarmaa/portable-minecraft-builder/tree/gui) branch.
+
 > _Icon from the [Minecraft Wiki](https://minecraft.fandom.com/wiki/Minecraft_Launcher?file=Minecraft_Launcher_MS_Icon.png)_
 
 A batch script that creates a portable Minecraft installation that you can use from **any Windows PC**, just put it in a USB drive 😉
