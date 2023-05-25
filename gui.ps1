@@ -84,7 +84,7 @@ $labelLogo.Size = New-Object System.Drawing.Size(100, 50)
 $labelLogo.Left = ($form.ClientSize.Width - $labelLogo.Width) - 10
 $labelLogo.Text = 'mk'
 $labelLogo.Font = "Lucida Console Regular,40"
-$labelLogo.ForeColor = $accentColor2
+$labelLogo.ForeColor = $accentColor3
 $labelLogo.Add_Click({
     $url = "https://github.com/madkarmaa/"
     Start-Process $url
