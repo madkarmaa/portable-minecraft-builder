@@ -49,7 +49,7 @@ $response = Invoke-RestMethod -Uri $url -Method GET
 if ($matchingFiles.Count -gt 0) {
     $fileToDownload = $null
 
-    foreach ($file in $matchingFiles[0].files) {
+    foreach ($file in $matchingFiles.files) {
         $fileToDownload = $file | Where-Object { ($_.primary -eq "true") }
         break
     }
