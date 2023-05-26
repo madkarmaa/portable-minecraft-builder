@@ -41,10 +41,10 @@ function GetMinecraftReleaseVersion {
 
 $minecraftVersion = GetMinecraftReleaseVersion
 
-$url = "https://api.modrinth.com/v2/project/$projectName/version"
-$response = Invoke-RestMethod -Uri $url -Method GET
-
 $nameUrl = "https://api.modrinth.com/v2/project/$projectName"
+$url = "$nameUrl/version"
+
+$response = Invoke-RestMethod -Uri $url -Method GET
 $nameResponse = Invoke-RestMethod -Uri $nameUrl -Method GET
 $modName = $nameResponse.title
 
