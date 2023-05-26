@@ -37,6 +37,10 @@ $uri = New-Object System.Uri($Url)
 $filename = [System.IO.Path]::GetFileName($uri.LocalPath)
 $destinationPath = ".\$filename"
 
+if (Test-Path $destinationPath) {
+    Remove-Item $destinationPath
+}
+
 $webClient.DownloadFile($Url, $destinationPath)
 
 $webClient.Dispose()
