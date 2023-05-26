@@ -44,6 +44,10 @@ $minecraftVersion = GetMinecraftReleaseVersion
 $url = "https://api.modrinth.com/v2/project/$projectName/version"
 $response = Invoke-RestMethod -Uri $url -Method GET
 
+$nameUrl = "https://api.modrinth.com/v2/project/$projectName"
+$nameResponse = Invoke-RestMethod -Uri $nameUrl -Method GET
+$modName = $nameResponse.title
+
 [array]$matchingFiles = $response | Where-Object { ($_.version_type -eq "release") -and ($_.loaders -contains "fabric") -and ($_.game_versions -contains $minecraftVersion) }
 
 if ($matchingFiles.Count -gt 0) {
@@ -56,7 +60,6 @@ if ($matchingFiles.Count -gt 0) {
 
     $modFile = $fileToDownload.filename
     $modUrl = $fileToDownload.url
-    $modName = $modFile -replace "\.jar$"
 
     $destinationDirectory = ".\$DataFolderName\mods"
     $destinationPath = Join-Path $destinationDirectory $modFile
@@ -70,5 +73,5 @@ if ($matchingFiles.Count -gt 0) {
     $webClient.DownloadFile($modUrl, $destinationPath)
     Write-Host "Successfully installed [32m$modName[0m"
 } else {
-    Write-Host "[31mNo matching files found for '$projectName'.[0m"
+    Write-Host "[31mNo matching files found for $modName.[0m"
 }
