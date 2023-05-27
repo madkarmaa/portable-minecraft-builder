@@ -250,7 +250,7 @@ try {
         }
 
         if ($dlJava -and $jdkFolderExists) {
-            Remove-Item -Path $folderPath -Recurse
+            Remove-Item -Path $folderPath -Recurse -Force
         }
 
         $removeData = $true
@@ -259,7 +259,7 @@ try {
         }
 
         if ($removeData -and $mcDataFolderExists) {
-            Remove-Item -Path (Join-Path -Path ".\" -ChildPath $textFolder.Text) -Recurse
+            Remove-Item -Path (Join-Path -Path ".\" -ChildPath $textFolder.Text) -Recurse -Force
         }
 
         Start-Process powershell.exe -ArgumentList "-Command", '".\portable-minecraft-builder.ps1"', "-DataFolderName", $textFolder.Text, "-InstallFabric", $switchFabric.Checked.ToString(), "-InstallMods", $switchMods.Checked.ToString(), "-DownloadJava", $dlJava.ToString() -NoNewWindow -Wait

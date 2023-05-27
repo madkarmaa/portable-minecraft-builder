@@ -69,7 +69,7 @@ try {
         Start-Process powershell.exe -ArgumentList "-Command", '".\fabric-downloader.ps1"' -NoNewWindow -Wait
     
         Log "Installing Fabric..."
-        $fileExists = Test-Path -Path ".\$DataFolderName\launcher_profiles.json" > $null
+        $fileExists = Test-Path -Path ".\$DataFolderName\launcher_profiles.json" -PathType Leaf
     
         if (-not ($fileExists)) {
             Start-Process powershell.exe -ArgumentList "-Command", {
@@ -108,7 +108,7 @@ try {
     Remove-Item -Path $tempfile -Force
     
     foreach ($file in $filesToHide) {
-        (Get-Item $file).Attributes += [System.IO.FileAttributes]::Hidden
+        (Get-Item $file -Force).Attributes += [System.IO.FileAttributes]::Hidden
     }
     
     Log "Done" -logLevel "SUCCESS"

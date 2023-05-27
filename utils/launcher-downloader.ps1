@@ -5,6 +5,12 @@ Import-Module -Name ".\helper.psm1" -Force
 
 try {
     Add-Type -AssemblyName System.Net.Http
+
+    $fileExists = Test-Path -Path $outputPath -PathType Leaf
+    if ($fileExists) {
+        Remove-Item -Path $outputPath -Force
+    }
+
     # Create an HttpClient object
     $httpClient = New-Object System.Net.Http.HttpClient
     # Make a POST request to fetch the JSON data

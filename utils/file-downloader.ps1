@@ -14,7 +14,7 @@ try {
     $destinationPath = ".\$filename"
 
     if (Test-Path $destinationPath) {
-        Remove-Item $destinationPath -Force
+        Remove-Item -Path $destinationPath -Force
     }
 
     $webClient.DownloadFile($Url, $destinationPath)
