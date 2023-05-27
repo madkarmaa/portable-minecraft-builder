@@ -294,6 +294,7 @@ $buttonInstall.Add_Click({
     $buttonInstall.Text = "Done!"
 
     Log "========== INSTALLATION END =========="
+    Log "Please close the GUI window and not this window."
 })
 $form.Controls.Add($buttonInstall)
 
