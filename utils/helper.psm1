@@ -5,7 +5,7 @@ function Log {
         [string]$logLevel = "INFO"
     )
 
-    $logFilePath = ".\InstallerLog.txt"
+    $logFilePath = Join-Path $env:TEMP "InstallerLog.txt"
     $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
     $fileName = (Get-PSCallStack | Select-Object -Skip 1 -First 1).Command
 
