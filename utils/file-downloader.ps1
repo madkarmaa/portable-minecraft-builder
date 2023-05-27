@@ -46,4 +46,4 @@ if (Test-Path $destinationPath) {
 $webClient.DownloadFile($Url, $destinationPath)
 $webClient.Dispose()
 
-Log "Successfully downloaded '$filename'"
+Log "Successfully downloaded '$filename'" -logLevel "SUCCESS"

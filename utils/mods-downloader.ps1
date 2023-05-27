@@ -73,7 +73,7 @@ if ($matchingFiles.Count -gt 0) {
 
     $webClient = New-Object System.Net.WebClient
     $webClient.DownloadFile($modUrl, $destinationPath)
-    Log "Successfully installed $modName"
+    Log "Successfully installed $modName" -logLevel "SUCCESS"
 } else {
-    Log "No matching files found for $modName."
+    Log "No matching files found for $modName." -logLevel "ERROR"
 }

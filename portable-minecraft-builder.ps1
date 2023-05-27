@@ -64,27 +64,27 @@ foreach ($url in $urls) {
 }
 Remove-Item -Path ".\file-downloader.ps1" -Force
 
-Log "Done"
+Log "Done" -logLevel "SUCCESS"
 
 Log "Creating Minecraft data directory..."
 
 New-Item -ItemType Directory -Path ".\$DataFolderName" > $null
 
-Log "Done"
+Log "Done" -logLevel "SUCCESS"
 
 Log "Downloading launcher..."
 
 Start-Process powershell.exe -ArgumentList "-Command", '".\launcher-downloader.ps1"' -NoNewWindow -Wait
 Remove-Item -Path ".\launcher-downloader.ps1" -Force
 
-Log "Done"
+Log "Done" -logLevel "SUCCESS"
 
 if ($DownloadJava -eq $true) {
     Log "Downloading Java..."
 
     Start-Process powershell.exe -ArgumentList "-Command", '".\java-downloader.ps1"' -NoNewWindow -Wait
 
-    Log "Done"
+    Log "Done" -logLevel "SUCCESS"
 }
 Remove-Item -Path ".\java-downloader.ps1" -Force
 
@@ -100,14 +100,14 @@ if ($InstallFabric -eq $true) {
             [System.Windows.Forms.MessageBox]::Show('The file launcher_profiles.json does not exist. The launcher is starting, please wait, then close it.') > $null
         } -NoNewWindow
 
-        Log "Waiting for the launcher to be closed..."
+        Log "Waiting for the launcher to be closed..." -logLevel "WARNING"
         Start-Process -FilePath $javaPath -ArgumentList "-jar", ".\$launcherJar", "--workDir", $DataFolderName -NoNewWindow -Wait
     }
 
     Start-Process -FilePath $javaPath -ArgumentList "-jar", '".\fabric.jar"', "client", "-dir", $DataFolderName -NoNewWindow -Wait
     Remove-Item -Path ".\fabric.jar" -Force
 
-    Log "Done"
+    Log "Done" -logLevel "SUCCESS"
 
     if ($InstallMods -eq $true) {
         $projectNames = @("fabric-api", "iris", "lithium", "sodium", "starlight", "memoryleakfix", "krypton", "ferrite-core", "better-ping-display-fabric", "dynamic-fps", "modmenu")
@@ -118,7 +118,7 @@ if ($InstallFabric -eq $true) {
             Start-Process powershell.exe -ArgumentList "-Command", '".\mods-downloader.ps1"', "-projectName", $projectName, "-DataFolderName", $DataFolderName -NoNewWindow -Wait
         }
 
-        Log "Done"
+        Log "Done" -logLevel "SUCCESS"
     }
 }
 
@@ -134,7 +134,7 @@ foreach ($file in $filesToHide) {
     (Get-Item $file).Attributes += [System.IO.FileAttributes]::Hidden
 }
 
-Log "Done"
+Log "Done" -logLevel "SUCCESS"
 
 Remove-Item -Path ".\fabric-downloader.ps1" -Force
 Remove-Item -Path ".\mods-downloader.ps1" -Force

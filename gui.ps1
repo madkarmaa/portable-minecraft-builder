@@ -293,8 +293,8 @@ $buttonInstall.Add_Click({
     $buttonInstall.BackColor = $successColor
     $buttonInstall.Text = "Done!"
 
-    Log "========== INSTALLATION END =========="
-    Log "Please close the GUI window and not this window."
+    Log "========== INSTALLATION END ==========" -logLevel "SUCCESS"
+    Log "Please close the GUI window and not this window." -logLevel "WARNING"
 })
 $form.Controls.Add($buttonInstall)
 

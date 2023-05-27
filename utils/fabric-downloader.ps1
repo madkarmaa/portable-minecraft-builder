@@ -48,7 +48,7 @@ foreach ($item in $data) {
 if ($downloadUrl) {
     $client = New-Object System.Net.WebClient
     $client.DownloadFile($downloadUrl, "fabric.jar")
-    Log "Done"
+    Log "Done" -logLevel "SUCCESS"
 } else {
-    Log "No stable URL found."
+    Log "No stable URL found." -logLevel "ERROR"
 }

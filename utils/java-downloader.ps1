@@ -42,7 +42,7 @@ $javaZip = Invoke-RestMethod -Uri $apiUrl |
         $_.name
     }
 
-Log "Successfully downloaded '$javaZip'"
+Log "Successfully downloaded '$javaZip'" -logLevel "SUCCESS"
 
 # Extract the downloaded ZIP file using tar
 Start-Process tar -ArgumentList "-xf", ".\$javaZip", "-C", "." -NoNewWindow -Wait
@@ -53,4 +53,4 @@ $extractedFolder = Get-ChildItem -Directory | Where-Object { $_.Name -like "jdk*
 $newFolderName = "Java"
 Rename-Item -Path $extractedFolder.FullName -NewName $newFolderName -Force
 
-Log "Successfully extracted '$javaZip'"
+Log "Successfully extracted '$javaZip'" -logLevel "SUCCESS"
