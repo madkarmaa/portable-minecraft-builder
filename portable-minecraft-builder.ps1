@@ -79,10 +79,10 @@ try {
             } -NoNewWindow
         
             Log "Waiting for the launcher to be closed..." -logLevel "WARNING"
-            Start-Process -FilePath $javaPath -ArgumentList "-jar", ".\$launcherJar", "--workDir", $DataFolderName -NoNewWindow -Wait | Out-File -Append -FilePath $logFilePath -Force
+            Start-Process -FilePath $javaPath -ArgumentList "-jar", ".\$launcherJar", "--workDir", $DataFolderName -NoNewWindow -Wait >> $logFilePath
         }
     
-        Start-Process -FilePath $javaPath -ArgumentList "-jar", '".\fabric.jar"', "client", "-dir", $DataFolderName -NoNewWindow -Wait | Out-File -Append -FilePath $logFilePath -Force
+        Start-Process -FilePath $javaPath -ArgumentList "-jar", '".\fabric.jar"', "client", "-dir", $DataFolderName -NoNewWindow -Wait >> $logFilePath
         Remove-Item -Path ".\fabric.jar" -Force
     
         Log "Done" -logLevel "SUCCESS"
