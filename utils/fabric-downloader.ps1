@@ -27,6 +27,7 @@ Trap {
 
 Import-Module -Name ".\helper.psm1" -Force
 
+Log "Downloading Fabric..."
 $r = Invoke-WebRequest -UseBasicParsing -Uri "https://meta.fabricmc.net/v2/versions/installer" -Method GET
 
 if ($r.StatusCode -ne 200) {
@@ -47,6 +48,7 @@ foreach ($item in $data) {
 if ($downloadUrl) {
     $client = New-Object System.Net.WebClient
     $client.DownloadFile($downloadUrl, "fabric.jar")
+    Log "Done"
 } else {
     Log "No stable URL found."
 }

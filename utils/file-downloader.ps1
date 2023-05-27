@@ -31,6 +31,8 @@ Trap {
     Exit 1
 }
 
+Import-Module -Name ".\helper.psm1" -Force
+
 $webClient = New-Object System.Net.WebClient
 
 $uri = New-Object System.Uri($Url)
@@ -42,5 +44,6 @@ if (Test-Path $destinationPath) {
 }
 
 $webClient.DownloadFile($Url, $destinationPath)
-
 $webClient.Dispose()
+
+Log "Successfully downloaded '$filename'"

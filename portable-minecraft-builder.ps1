@@ -9,7 +9,6 @@ param (
     [string]$DownloadJava
 )
 
-Import-Module -Name ".\helper.psm1" -Force
 $ErrorActionPreference = 'Stop'
 
 Trap {
@@ -36,6 +35,8 @@ Trap {
     Pause
     Exit 1
 }
+
+Import-Module -Name ".\helper.psm1" -Force
 
 # Convert the string values to boolean
 $InstallFabric = [bool]::Parse($InstallFabric)
@@ -88,10 +89,9 @@ if ($DownloadJava -eq $true) {
 Remove-Item -Path ".\java-downloader.ps1" -Force
 
 if ($InstallFabric -eq $true) {
-    Log "Installing Fabric..."
-
     Start-Process powershell.exe -ArgumentList "-Command", '".\fabric-downloader.ps1"' -NoNewWindow -Wait
 
+    Log "Installing Fabric..."
     $fileExists = Test-Path -Path ".\$DataFolderName\launcher_profiles.json" > $null
 
     if (-not ($fileExists)) {

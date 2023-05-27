@@ -25,6 +25,8 @@ Trap {
     Exit 1
 }
 
+Import-Module -Name ".\helper.psm1" -Force
+
 $apiUrl = "https://api.github.com/repos/adoptium/temurin17-binaries/releases/latest"
 $javaMatchPattern = "OpenJDK17U-jdk_x64_windows_hotspot*.zip"
 
@@ -40,6 +42,8 @@ $javaZip = Invoke-RestMethod -Uri $apiUrl |
         $_.name
     }
 
+Log "Successfully downloaded '$javaZip'"
+
 # Extract the downloaded ZIP file using tar
 Start-Process tar -ArgumentList "-xf", ".\$javaZip", "-C", "." -NoNewWindow -Wait
 Remove-Item -Path ".\$javaZip" -Force
@@ -48,3 +52,5 @@ Remove-Item -Path ".\$javaZip" -Force
 $extractedFolder = Get-ChildItem -Directory | Where-Object { $_.Name -like "jdk*" }
 $newFolderName = "Java"
 Rename-Item -Path $extractedFolder.FullName -NewName $newFolderName -Force
+
+Log "Successfully extracted '$javaZip'"
