@@ -56,39 +56,39 @@ $javaFolder = "Java"
 $javaPath = ".\$JavaFolder\bin\javaw.exe"
 $launcherJar = 'SKlauncher.jar'
 
-Write-Host "`n[33mDownloading resources...[0m"
+Log "Downloading resources..."
 
 foreach ($url in $urls) {
     Start-Process powershell.exe -ArgumentList "-Command", '".\file-downloader.ps1"', "-Url", $url -NoNewWindow -Wait
 }
 Remove-Item -Path ".\file-downloader.ps1" -Force
 
-Write-Host "[32mDone[0m"
+Log "Done"
 
-Write-Host "[33mCreating Minecraft data directory...[0m"
+Log "Creating Minecraft data directory..."
 
 New-Item -ItemType Directory -Path ".\$DataFolderName" > $null
 
-Write-Host "[32mDone[0m"
+Log "Done"
 
-Write-Host "`n[33mDownloading launcher...[0m"
+Log "Downloading launcher..."
 
 Start-Process powershell.exe -ArgumentList "-Command", '".\launcher-downloader.ps1"' -NoNewWindow -Wait
-
 Remove-Item -Path ".\launcher-downloader.ps1" -Force
-Write-Host "[32mDone[0m"
+
+Log "Done"
 
 if ($DownloadJava -eq $true) {
-    Write-Host "`n[33mDownloading Java...[0m"
+    Log "Downloading Java..."
 
     Start-Process powershell.exe -ArgumentList "-Command", '".\java-downloader.ps1"' -NoNewWindow -Wait
 
-    Write-Host "[32mDone[0m"
+    Log "Done"
 }
 Remove-Item -Path ".\java-downloader.ps1" -Force
 
 if ($InstallFabric -eq $true) {
-    Write-Host "`n[33mInstalling Fabric...[0m"
+    Log "Installing Fabric..."
 
     Start-Process powershell.exe -ArgumentList "-Command", '".\fabric-downloader.ps1"' -NoNewWindow -Wait
 
@@ -100,31 +100,31 @@ if ($InstallFabric -eq $true) {
             [System.Windows.Forms.MessageBox]::Show('The file launcher_profiles.json does not exist. The launcher is starting, please wait, then close it.') > $null
         } -NoNewWindow
 
-        Write-Host "[33mWaiting for the launcher to be closed...[0m"
+        Log "Waiting for the launcher to be closed..."
         Start-Process -FilePath $javaPath -ArgumentList "-jar", ".\$launcherJar", "--workDir", $DataFolderName -NoNewWindow -Wait
     }
 
     Start-Process -FilePath $javaPath -ArgumentList "-jar", '".\fabric.jar"', "client", "-dir", $DataFolderName -NoNewWindow -Wait
     Remove-Item -Path ".\fabric.jar" -Force
 
-    Write-Host "[32mDone[0m"
+    Log "Done"
 
     if ($InstallMods -eq $true) {
         $projectNames = @("fabric-api", "iris", "lithium", "sodium", "starlight", "memoryleakfix", "krypton", "ferrite-core", "better-ping-display-fabric", "dynamic-fps", "modmenu")
 
-        Write-Host "`n[33mInstalling mods...[0m`n"
+        Log "Installing mods..."
 
         foreach ($projectName in $projectNames) {
             Start-Process powershell.exe -ArgumentList "-Command", '".\mods-downloader.ps1"', "-projectName", $projectName, "-DataFolderName", $DataFolderName -NoNewWindow -Wait
         }
 
-        Write-Host "`n[32mDone[0m"
+        Log "Done"
     }
 }
 
 $filesToHide = @(".\minecraft.bat", ".\$launcherJar")
 
-Write-Host "`n[33mModifying templates...[0m"
+Log "Modifying templates..."
 
 ((Get-Content ".\minecraft.bat") -replace 'javafolder', "$javaFolder" -replace 'launchername', "$launcherJar" -replace 'datadir', "$DataFolderName") | Set-Content $tempfile
 Get-Content $tempfile | Set-Content ".\minecraft.bat"
@@ -134,7 +134,7 @@ foreach ($file in $filesToHide) {
     (Get-Item $file).Attributes += [System.IO.FileAttributes]::Hidden
 }
 
-Write-Host "[32mDone[0m"
+Log "Done"
 
 Remove-Item -Path ".\fabric-downloader.ps1" -Force
 Remove-Item -Path ".\mods-downloader.ps1" -Force

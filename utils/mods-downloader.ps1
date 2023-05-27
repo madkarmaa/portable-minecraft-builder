@@ -32,6 +32,8 @@ Trap {
     Exit 1
 }
 
+Import-Module -Name ".\helper.psm1" -Force
+
 function GetMinecraftReleaseVersion {
     $apiUrl = "https://launchermeta.mojang.com/mc/game/version_manifest.json"
     $response = Invoke-RestMethod -Uri $apiUrl
@@ -71,7 +73,7 @@ if ($matchingFiles.Count -gt 0) {
 
     $webClient = New-Object System.Net.WebClient
     $webClient.DownloadFile($modUrl, $destinationPath)
-    Write-Host "Successfully installed [32m$modName[0m"
+    Log "Successfully installed $modName"
 } else {
-    Write-Host "[31mNo matching files found for $modName.[0m"
+    Log "No matching files found for $modName."
 }

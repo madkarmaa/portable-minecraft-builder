@@ -34,6 +34,7 @@ Trap {
 }
 
 Add-Type -AssemblyName System.Windows.Forms
+Import-Module -Name ".\helper.psm1" -Force
 
 $folderPath = ".\Java"
 
@@ -242,7 +243,7 @@ $buttonInstall.Top = $form.ClientSize.Height - $buttonInstall.Height - 50
 $buttonInstall.BackColor = $accentColor3
 $buttonInstall.ForeColor = [System.Drawing.Color]::White
 $buttonInstall.Add_Click({
-    Write-Host "`n[35m========== INSTALLATION START ==========[0m`n"
+    Log "========== INSTALLATION START =========="
     $buttonInstall.Enabled = $false
     $buttonInstall.Text = "Installing..."
 
@@ -292,7 +293,7 @@ $buttonInstall.Add_Click({
     $buttonInstall.BackColor = $successColor
     $buttonInstall.Text = "Done!"
 
-    Write-Host "`n[35m========== INSTALLATION END ==========[0m"
+    Log "========== INSTALLATION END =========="
 })
 $form.Controls.Add($buttonInstall)
 
