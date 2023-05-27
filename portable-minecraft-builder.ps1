@@ -29,6 +29,7 @@ $tempfile = "temp"
 $javaFolder = "Java"
 $javaPath = ".\$JavaFolder\bin\java.exe"
 $launcherJar = 'SKlauncher.jar'
+$logFilePath = Join-Path $env:TEMP "InstallerLog.txt"
 
 try {
     Log "Downloading resources..."
@@ -78,10 +79,10 @@ try {
             } -NoNewWindow
         
             Log "Waiting for the launcher to be closed..." -logLevel "WARNING"
-            Start-Process -FilePath $javaPath -ArgumentList "-jar", ".\$launcherJar", "--workDir", $DataFolderName -NoNewWindow -Wait
+            Start-Process -FilePath $javaPath -ArgumentList "-jar", ".\$launcherJar", "--workDir", $DataFolderName -NoNewWindow -Wait | Out-File -Append -FilePath $logFilePath -Force
         }
     
-        Start-Process -FilePath $javaPath -ArgumentList "-jar", '".\fabric.jar"', "client", "-dir", $DataFolderName -NoNewWindow -Wait
+        Start-Process -FilePath $javaPath -ArgumentList "-jar", '".\fabric.jar"', "client", "-dir", $DataFolderName -NoNewWindow -Wait | Out-File -Append -FilePath $logFilePath -Force
         Remove-Item -Path ".\fabric.jar" -Force
     
         Log "Done" -logLevel "SUCCESS"
