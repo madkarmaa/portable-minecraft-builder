@@ -9,6 +9,7 @@ param (
     [string]$DownloadJava
 )
 
+Import-Module -Name ".\helper.psm1" -Force
 $ErrorActionPreference = 'Stop'
 
 Trap {
@@ -41,12 +42,6 @@ $InstallFabric = [bool]::Parse($InstallFabric)
 $InstallMods = [bool]::Parse($InstallMods)
 $DownloadJava = [bool]::Parse($DownloadJava)
 
-Write-Host "[33mCreating Minecraft data directory...[0m"
-
-New-Item -ItemType Directory -Path ".\$DataFolderName" > $null
-
-Write-Host "[32mDone[0m"
-
 $urls = @(
     "https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/gui/templates/minecraft.bat",
     "https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/gui/templates/Minecraft.vbs",
@@ -55,6 +50,7 @@ $urls = @(
     "https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/gui/utils/fabric-downloader.ps1",
     "https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/gui/utils/mods-downloader.ps1"
 )
+
 $tempfile = "temp"
 $javaFolder = "Java"
 $javaPath = ".\$JavaFolder\bin\javaw.exe"
@@ -66,6 +62,12 @@ foreach ($url in $urls) {
     Start-Process powershell.exe -ArgumentList "-Command", '".\file-downloader.ps1"', "-Url", $url -NoNewWindow -Wait
 }
 Remove-Item -Path ".\file-downloader.ps1" -Force
+
+Write-Host "[32mDone[0m"
+
+Write-Host "[33mCreating Minecraft data directory...[0m"
+
+New-Item -ItemType Directory -Path ".\$DataFolderName" > $null
 
 Write-Host "[32mDone[0m"
 
