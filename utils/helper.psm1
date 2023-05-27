@@ -7,7 +7,7 @@ function Log {
 
     $logFilePath = Join-Path $env:TEMP "InstallerLog.txt"
     $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
-    $fileName = (Get-PSCallStack | Select-Object -Skip 1 -First 1).Command
+    $fileName = (Get-PSCallStack | Where-Object Command | Select-Object -Skip 1 -First 1).Command
 
     $levelColor = @{
         "INFO"    = "[36m"
@@ -18,7 +18,7 @@ function Log {
     }
 
     $level = $levelColor[$logLevel.ToUpper()] + $logLevel + "[0m"
-    $logEntry = "[[34m$timestamp[0m] [[32m$fileName[0m] [$level] $message"
+    $logEntry = "[[34m$timestamp[0m] [[35m$fileName[0m] [$level] $message"
 
     Write-Host $logEntry
     ($logEntry -replace '\e\[[0-9;]*m') | Out-File -Append -FilePath $logFilePath -Force
