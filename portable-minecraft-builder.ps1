@@ -39,12 +39,15 @@ try {
     Remove-Item -Path ".\file-downloader.ps1" -Force
     
     Log "Done" -logLevel "SUCCESS"
+
+    $dataFolderExists = Test-Path $DataFolderName -PathType Container
+    if (-not ($dataFolderExists)) {
+        Log "Creating Minecraft data directory..."
     
-    Log "Creating Minecraft data directory..."
+        New-Item -ItemType Directory -Path ".\$DataFolderName" > $null
     
-    New-Item -ItemType Directory -Path ".\$DataFolderName" > $null
-    
-    Log "Done" -logLevel "SUCCESS"
+        Log "Done" -logLevel "SUCCESS"
+    }
     
     Log "Downloading launcher..."
     

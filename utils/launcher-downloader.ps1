@@ -1,6 +1,8 @@
 $fetchUrl = "https://skmedix.pl/downloads/json"
 $outputPath = ".\SKlauncher.jar"
 
+Import-Module -Name ".\helper.psm1" -Force
+
 try {
     Add-Type -AssemblyName System.Net.Http
     # Create an HttpClient object
