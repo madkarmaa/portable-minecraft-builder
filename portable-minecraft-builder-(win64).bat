@@ -7,7 +7,7 @@ for %%F in ("%pwsUrl%") do set "pwsName=%%~nF"
 set pwsName=%pwsName%.ps1
 
 for %%F in ("%helperModuleUrl%") do set "helperModuleName=%%~nF"
-set helperModuleName=%helperModuleName%.ps1
+set helperModuleName=%helperModuleName%.psm1
 
 powershell -command "(New-Object System.Net.WebClient).DownloadFile('%pwsUrl%', '.\%pwsName%')" >NUL 2>&1
 powershell -command "(New-Object System.Net.WebClient).DownloadFile('%helperModuleUrl%', '.\%helperModuleName%')" >NUL 2>&1
@@ -15,4 +15,8 @@ powershell -ExecutionPolicy Bypass -File ".\%pwsName%"
 
 if exist ".\%pwsName%" (
     del /F ".\%pwsName%" >NUL 2>&1
+)
+
+if exist ".\%helperModuleName%" (
+    del /F ".\%helperModuleName%" >NUL 2>&1
 )
