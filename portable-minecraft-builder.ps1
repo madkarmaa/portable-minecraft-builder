@@ -27,7 +27,7 @@ $urls = @(
 
 $tempfile = "temp"
 $javaFolder = "Java"
-$javaPath = ".\$JavaFolder\bin\javaw.exe"
+$javaPath = ".\$JavaFolder\bin\java.exe"
 $launcherJar = 'SKlauncher.jar'
 
 try {
