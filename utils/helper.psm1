@@ -23,3 +23,21 @@ function Log {
     Write-Host $logEntry
     ($logEntry -replace '\e\[[0-9;]*m') | Out-File -Append -FilePath $logFilePath -Force
 }
+
+function ErrorLog {
+    param(
+        [Parameter(Mandatory = $true)]
+        [System.Management.Automation.ErrorRecord]$ErrorRecord
+    )
+
+    $logFilePath = Join-Path $env:TEMP "InstallerLog.txt"
+    Log "An error occurred, please check $logFilePath for more details." -logLevel "ERROR"
+
+    $scriptName = (Get-PSCallStack | Where-Object Command | Select-Object -Skip 1 -First 1).Command
+    $errorMessage = "========== Exception in $scriptName =========="
+    $errorMessage += "`nLine: $($ErrorRecord.InvocationInfo.ScriptLineNumber)"
+    $errorMessage += "`nColumn: $($ErrorRecord.InvocationInfo.OffsetInLine)"
+    $errorMessage += "`nMessage: $($ErrorRecord.Exception.Message)"
+
+    $errorMessage | Out-File -Append -FilePath $logFilePath -Force
+}
