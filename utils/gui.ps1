@@ -1,3 +1,5 @@
+$host.ui.RawUI.WindowTitle = "Portable Minecraft Builder"
+
 $is64Bit = [System.Environment]::Is64BitOperatingSystem
 
 if (-not $is64Bit) {
