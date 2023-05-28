@@ -72,6 +72,8 @@ try {
         $fileExists = Test-Path -Path ".\$DataFolderName\launcher_profiles.json" -PathType Leaf
     
         if (-not ($fileExists)) {
+            Log "The file launcher_profiles.json does not exist. The launcher is starting, please wait, then close it." -logLevel "WARNING"
+
             Start-Process powershell.exe -ArgumentList "-Command", {
                 Add-Type -AssemblyName System.Windows.Forms
                 [System.Windows.Forms.MessageBox]::Show('The file launcher_profiles.json does not exist. The launcher is starting, please wait, then close it.') > $null

@@ -1,6 +1,6 @@
 @echo off
 
-set guiUrl=https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/gui/gui.ps1
+set guiUrl=https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/gui/utils/gui.ps1
 set helperModuleUrl=https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/gui/utils/helper.psm1
 
 for %%F in ("%guiUrl%") do set "guiName=%%~nF"

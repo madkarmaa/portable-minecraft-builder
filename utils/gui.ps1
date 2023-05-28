@@ -242,7 +242,7 @@ try {
 
         $webClient.Dispose()
 
-        Start-Process powershell.exe -ArgumentList "-Command", '".\file-downloader.ps1"', "-Url", '"https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/gui/portable-minecraft-builder.ps1"' -NoNewWindow -Wait
+        Start-Process powershell.exe -ArgumentList "-Command", '".\file-downloader.ps1"', "-Url", '"https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/gui/utils/portable-minecraft-builder.ps1"' -NoNewWindow -Wait
 
         $dlJava = $true
         if ($switchDeleteJdk.Visible) {
