@@ -51,7 +51,7 @@ try {
     Log "Downloading launcher..."
     
     Start-Process powershell.exe -ArgumentList "-Command", '".\file-downloader.ps1"', "-Url", "https://skmedix.pl//data/SKlauncher-3.1.jar" -NoNewWindow -Wait
-    $launcherFile = Get-ChildItem -Path "C:\Path\to\directory" -Filter "sklauncher*.jar" -Recurse | Where-Object { $_.Name -like "sklauncher*.jar" -and $_.Name -cne "SKlauncher.jar" }
+    $launcherFile = Get-ChildItem -Path "." -Filter "sklauncher*.jar" -Recurse | Where-Object { $_.Name -like "sklauncher*.jar" -and $_.Name -cne "SKlauncher.jar" }
 
     if ($launcherFile) {
         Rename-Item -Path $launcherFile.FullName -NewName "SKlauncher.jar" -Force
