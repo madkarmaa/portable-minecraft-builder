@@ -51,7 +51,7 @@ try {
     
     Log "Downloading launcher..."
     
-    Start-Process powershell.exe -ArgumentList "-Command", '".\launcher-downloader.ps1"' -NoNewWindow -Wait
+    Start-Process powershell.exe -ArgumentList "-Command", '".\file-downloader.ps1"', "-Url", "https://skmedix.pl//data/SKlauncher-3.1.jar" -NoNewWindow -Wait
     Remove-Item -Path ".\launcher-downloader.ps1" -Force
     
     Log "Done" -logLevel "SUCCESS"
@@ -89,7 +89,7 @@ try {
         Log "Done" -logLevel "SUCCESS"
     
         if ($InstallMods -eq $true) {
-            $projectNames = @("fabric-api", "iris", "lithium", "sodium", "starlight", "memoryleakfix", "krypton", "ferrite-core", "better-ping-display-fabric", "dynamic-fps", "modmenu")
+            $projectNames = @("fabric-api", "iris", "lithium", "sodium", "starlight", "memoryleakfix", "krypton", "ferrite-core", "better-ping-display-fabric", "dynamic-fps", "modmenu", "cull-leaves")
         
             Log "Installing mods..."
         
