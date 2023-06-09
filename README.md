@@ -25,7 +25,7 @@ Simply run `portable-minecraft-builder-(win64).bat` (download **[here](https://b
 
 ![separator](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
-## ⚠️ WARNING
+## ⚠️ WARNING ⚠️
 
 ⚠️ **FRACTUREISER** INFORMATION ⚠️
 
@@ -74,6 +74,6 @@ https://github.com/madkarmaa/portable-minecraft-builder/assets/100418457/c01fb43
 
 ![separator](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
-## 🚨 Important 🚨
+## 🚨 IMPORTANT 🚨
 
 Neither I nor GitHub are responsible for any unintended use of these resources/software, as I **DO NOT** own any of them, including (but not limited to) the [Minecraft](https://minecraft.net) brand/logo/game/name.
