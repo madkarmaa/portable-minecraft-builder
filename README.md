@@ -29,7 +29,7 @@ Simply run `portable-minecraft-builder-(win64).bat` (download **[here](https://b
 
 ⚠️ **FRACTUREISER** INFORMATION ⚠️
 
-As of **09/06/2023**, a few days ago several mods got infected by a virus, and so I've wanted to include all the security checkers avaiable for the moment since this script install mods.
+As of **09/06/2023**, a few days ago several mods got infected by a virus, and so I've wanted to include all the security checkers avaiable for the moment since this script installs mods.
 
 > _Several innocent looking malicious mods and plugins were initially uploaded by the malware's creator to the mod hosting website CurseForge and plugin hub dev.craftbukkit.org (not the Bukkit software itself). A high-profile mod pack developer downloaded one of these mods to try out, which infected files in their computer without their knowledge - this included a copy of a working project that would then be uploaded to CurseForge as a seemingly leigimate file, with the virus included._
 
