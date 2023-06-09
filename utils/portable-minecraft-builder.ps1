@@ -36,7 +36,6 @@ try {
     foreach ($url in $urls) {
         Start-Process powershell.exe -ArgumentList "-Command", '".\file-downloader.ps1"', "-Url", $url -NoNewWindow -Wait
     }
-    Remove-Item -Path ".\file-downloader.ps1" -Force
     
     Log "Done" -logLevel "SUCCESS"
 
@@ -53,6 +52,7 @@ try {
     
     Start-Process powershell.exe -ArgumentList "-Command", '".\file-downloader.ps1"', "-Url", "https://skmedix.pl//data/SKlauncher-3.1.jar" -NoNewWindow -Wait
     Remove-Item -Path ".\launcher-downloader.ps1" -Force
+    Remove-Item -Path ".\file-downloader.ps1" -Force
     
     Log "Done" -logLevel "SUCCESS"
     
