@@ -48,7 +48,7 @@ try {
         $webClient.DownloadFile($modUrl, $destinationPath)
         Log "Successfully installed $modName" -logLevel "SUCCESS"
     } else {
-        Log "No matching files found for $modName in game version $minecraftVersion." -logLevel "WARNING"
+        Log "No matching files found for $modName in game version $minecraftVersion" -logLevel "ERROR"
     }
 }
 catch {
