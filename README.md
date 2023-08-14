@@ -7,7 +7,7 @@
 
 A PowerShell script that creates a portable Minecraft installation that you can use from **any Windows PC**, just put it in a USB drive 😉
 
-![separator](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
+![separator](https://raw.githubusercontent.com/madkarmaa/automatic-chatgpt-dan/master/images/line.png)
 
 ## ❓ Info
 
@@ -15,7 +15,7 @@ This script will download, extract and setup all the necessary tools by itself a
 
 It uses 64-bit resources/software, so it's meant for **64-bit Windows only**.
 
-![separator](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
+![separator](https://raw.githubusercontent.com/madkarmaa/automatic-chatgpt-dan/master/images/line.png)
 
 ## ❓ How to use
 
@@ -23,7 +23,7 @@ Simply run `portable-minecraft-builder-(win64).bat` (download **[here](https://b
 
 > There's also a [CLI version](https://github.com/madkarmaa/portable-minecraft-builder/tree/master) of this script, but I'm no longer going to update it.
 
-![separator](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
+![separator](https://raw.githubusercontent.com/madkarmaa/automatic-chatgpt-dan/master/images/line.png)
 
 ## ⚠️ WARNING ⚠️
 
@@ -39,15 +39,9 @@ Check out **[fractureiser-investigation/fractureiser](https://github.com/fractur
 
 - **[SKlauncher](https://skmedix.pl/)**: the Minecraft launcher.
 
-> _I personally love this launcher, it's the main one I've been using since I've discovered it, even tho I've bought my own copy of Minecraft._
-
 - **[Fabric](https://fabricmc.net/)**: modded Minecraft version.
 
-> _"Fabric is a lightweight, experimental modding toolchain for Minecraft."_
-
 - **[adoptium/temurin17-binaries](https://github.com/adoptium/temurin17-binaries/)**: the recommended Java version by SKlauncher.
-
-> _Visit [Adoptium's website](https://adoptium.net/)._
 
 - **[Modrinth](https://modrinth.com/)**'s mods used:
 
@@ -64,15 +58,13 @@ Check out **[fractureiser-investigation/fractureiser](https://github.com/fractur
   - [Concurrent Chunk Management Engine (Fabric)](https://modrinth.com/mod/c2me-fabric)
   - [Entity Culling](https://modrinth.com/mod/entityculling)
 
-> _"The place for Minecraft mods"_
-
-![separator](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
+![separator](https://raw.githubusercontent.com/madkarmaa/automatic-chatgpt-dan/master/images/line.png)
 
 ## 🎥 Demo
 
 https://github.com/madkarmaa/portable-minecraft-builder/assets/100418457/c01fb43c-fcac-4ef5-801f-b3f16787ec76
 
-![separator](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
+![separator](https://raw.githubusercontent.com/madkarmaa/automatic-chatgpt-dan/master/images/line.png)
 
 ## 🚨 IMPORTANT 🚨
 
