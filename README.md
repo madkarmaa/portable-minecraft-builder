@@ -58,11 +58,11 @@ Check out **[fractureiser-investigation/fractureiser](https://github.com/fractur
   - [Starlight (Fabric)](https://modrinth.com/mod/starlight)
   - [Memory Leak Fix](https://modrinth.com/mod/memoryleakfix)
   - [Krypton](https://modrinth.com/mod/krypton)
-  - [FerriteCore](https://modrinth.com/mod/ferrite-core)
-  - [Better Ping Display [Fabric]](https://modrinth.com/mod/better-ping-display-fabric)
   - [Dynamic FPS](https://modrinth.com/mod/dynamic-fps)
   - [Mod Menu](https://modrinth.com/mod/modmenu)
-  - [Cull Leaves](https://modrinth.com/mod/cull-leaves)
+  - [Alternate Current](https://modrinth.com/mod/alternate-current)
+  - [Concurrent Chunk Management Engine (Fabric)](https://modrinth.com/mod/c2me-fabric)
+  - [Entity Culling](https://modrinth.com/mod/entityculling)
 
 > _"The place for Minecraft mods"_
 
