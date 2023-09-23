@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <!-- https://stackoverflow.com/a/68523036 -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; font-src 'self' https://fonts.gstatic.com;
+          style-src 'self' https://fonts.googleapis.com" />
+    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'; font-src 'self' https://fonts.gstatic.com;
+          style-src 'self' https://fonts.googleapis.com" />
+    <link rel="stylesheet" href="./src/style.css">
+    <title>Portable Minecraft Builder</title>
+</head>
+
+<body class="noselect">
+    <div class="wrap">
+        <h1>Portable Minecraft Builder</h1>
+        <form>
+            <div>
+                <label for="folder-name">
+                    <h3>Data folder name</h3>
+                </label>
+                <input type="text" id="folder-name" placeholder=".minecraft" />
+            </div>
+            <div>
+                <label for="install-mods">
+                    <h3>Install optimization mods</h3>
+                    <input type="checkbox" id="install-mods" />
+                    <span class="checkmark"></span>
+                </label>
+            </div>
+            <div>
+                <input type="submit" id="submit" value="Build" />
+            </div>
+        </form>
+    </div>
+
+    <script src="./src/scripts/renderer.js"></script>
+</body>
+
+</html>

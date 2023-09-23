@@ -1,0 +1,22 @@
+# https://github.com/z3db0y/rays-client-source/blob/main/electron-builder.yml
+
+appId: com.mk.portablemc
+productName: 'Portable Minecraft Builder'
+# icon: assets/icon.png
+
+win:
+    artifactName: ${name}-${os}-portable-${version}-${arch}.${ext}
+    target:
+        - target: portable
+          arch:
+              - x64
+
+# publish:
+#   provider: github
+#   repo: portable-minecraft-builder
+#   owner: madkarmaa
+
+npmRebuild: false
+
+files:
+    - '**/*'
