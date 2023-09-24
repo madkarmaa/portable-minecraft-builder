@@ -1,5 +1,6 @@
 const fs = require('node:fs');
 const path = require('node:path');
+const fswin = require('fswin');
 const { DownloaderHelper } = require('node-downloader-helper');
 
 // https://github.com/hgouveia/node-downloader-helper#options
@@ -17,6 +18,11 @@ async function downloadFile(url, savePath, options, cb) {
     }
 
     const dl = new DownloaderHelper(url, normalizedPath, options);
+
+    if (options?.hidden)
+        dl.on('end', (info) => {
+            fswin.setAttributes(info.filePath, { IS_HIDDEN: true }, () => {});
+        });
 
     if (
         options?.events &&

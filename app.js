@@ -1,7 +1,6 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('node:path');
 const fs = require('node:fs');
-// const fswin = require('fswin');
 const { urls, templates } = require('./src/constants');
 const { downloadFile } = require('./src/scripts/downloads');
 const { ElectronConsole } = require('./src/scripts/console');
@@ -20,7 +19,7 @@ const createWindow = () => {
         },
     });
 
-    mainWindow.loadFile('index.html');
+    mainWindow.loadFile('./index.html');
 };
 
 ipcMain.on('build', async (event, buildData) => {
@@ -59,6 +58,7 @@ ipcMain.on('build', async (event, buildData) => {
     // download launcher
     await downloadFile(urls.launcher, __dirname, {
         ...downloadOptions, // copy existing options
+        hidden: true,
         events: [
             ...downloadOptions.events, // copy existing events
             {
