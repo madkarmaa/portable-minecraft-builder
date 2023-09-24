@@ -146,16 +146,16 @@ ipcMain.on('build', async (event, buildData) => {
     };
 
     // download java
-    // await downloadFile(await urls.java.latestVersion(), __dirname, {
-    //     ...downloadOptions, // copy existing options
-    //     events: [
-    //         ...downloadOptions.events, // copy existing events
-    //         {
-    //             name: 'end',
-    //             cb: onJavaDlEnd,
-    //         },
-    //     ],
-    // });
+    await downloadFile(await urls.java.latestVersion(), __dirname, {
+        ...downloadOptions, // copy existing options
+        events: [
+            ...downloadOptions.events, // copy existing events
+            {
+                name: 'end',
+                cb: onJavaDlEnd,
+            },
+        ],
+    });
 });
 
 app.on('ready', () => {
