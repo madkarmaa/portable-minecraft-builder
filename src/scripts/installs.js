@@ -2,7 +2,7 @@ const { exec } = require('child_process');
 const fs = require('node:fs');
 const path = require('path');
 
-function fabricInstall(javaBinDir, launcherExecutable, fabricExecutable, gameDir) {
+function fabricInstall(javaBinDir, launcherExecutable, fabricExecutable, gameDir, cb) {
     const launcherProcess = exec(
         `${path.join(javaBinDir, 'java.exe')} -jar ${launcherExecutable} --workDir ${gameDir}`
     );
@@ -13,7 +13,9 @@ function fabricInstall(javaBinDir, launcherExecutable, fabricExecutable, gameDir
         );
 
         fabricProcess.on('exit', () => {
-            fs.unlink(fabricExecutable, (err) => {});
+            fs.unlink(fabricExecutable, (err) => {
+                if (cb) cb();
+            });
         });
     });
 }

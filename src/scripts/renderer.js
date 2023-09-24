@@ -9,7 +9,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // TODO: DOM logs
     window.api.onMessage('log', (e, message) => {
-        console.log(message);
+        if (message === 'done') return (document.querySelector('#submit').textContent = 'DONE!');
     });
 
     window.api.onMessage('popup', (e, message) => {

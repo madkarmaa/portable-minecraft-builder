@@ -2,11 +2,12 @@ const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('node:path');
 const fs = require('node:fs');
 const fswin = require('fswin');
+const StreamZip = require('node-stream-zip');
+
 const { urls, templates } = require('./src/constants');
 const { downloadFile } = require('./src/scripts/downloads');
 const { ElectronConsole } = require('./src/scripts/console');
-
-const StreamZip = require('node-stream-zip');
+const { fabricInstall } = require('./src/scripts/installs');
 
 const createWindow = () => {
     const mainWindow = new BrowserWindow({
@@ -133,13 +134,16 @@ ipcMain.on('build', async (event, buildData) => {
                     // rename extracted folder to a more universal name
                     if (jdkFolder) fs.renameSync(path.join(__dirname, jdkFolder), path.join(__dirname, 'Java'));
 
-                    // elConsole.popup("Close the launcher once it's completely loaded");
-                    // fabricInstall(
-                    //     path.join(__dirname, 'Java', 'bin'),
-                    //     path.join(__dirname, 'launcher.jar'),
-                    //     path.join(__dirname, 'fabric.jar'),
-                    //     path.join(__dirname, buildData.folderName)
-                    // );
+                    elConsole.popup("Close the launcher once it's completely loaded");
+                    fabricInstall(
+                        path.join(__dirname, 'Java', 'bin'),
+                        path.join(__dirname, 'launcher.jar'),
+                        path.join(__dirname, 'fabric.jar'),
+                        path.join(__dirname, buildData.folderName),
+                        () => {
+                            elConsole.popup('Everything is done, you can close the program!'); // process finished
+                        }
+                    );
                 });
             });
         });
