@@ -1,4 +1,6 @@
 window.addEventListener('DOMContentLoaded', () => {
+    if (!navigator.onLine) return (document.body.innerHTML = '<h1>Please connect to the internet</h1>');
+
     document.querySelector('form').addEventListener('submit', (e) => {
         // prevent form submit from refreshing the page
         e.preventDefault();

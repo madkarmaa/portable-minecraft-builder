@@ -1,6 +1,7 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('node:path');
 const fs = require('node:fs');
+const fswin = require('fswin');
 const { urls, templates } = require('./src/constants');
 const { downloadFile } = require('./src/scripts/downloads');
 const { ElectronConsole } = require('./src/scripts/console');
@@ -51,7 +52,9 @@ ipcMain.on('build', async (event, buildData) => {
     fs.writeFile(
         path.join(__dirname, 'minecraft.bat'),
         templates.bat('Java', 'launcher.jar', buildData.folderName),
-        () => {}
+        () => {
+            fswin.setAttributes(path.join(__dirname, 'minecraft.bat'), { IS_HIDDEN: true }, () => {});
+        }
     );
     fs.writeFile(path.join(__dirname, 'Minecraft.vbs'), templates.vbs, () => {});
 
@@ -143,16 +146,16 @@ ipcMain.on('build', async (event, buildData) => {
     };
 
     // download java
-    await downloadFile(await urls.java.latestVersion(), __dirname, {
-        ...downloadOptions, // copy existing options
-        events: [
-            ...downloadOptions.events, // copy existing events
-            {
-                name: 'end',
-                cb: onJavaDlEnd,
-            },
-        ],
-    });
+    // await downloadFile(await urls.java.latestVersion(), __dirname, {
+    //     ...downloadOptions, // copy existing options
+    //     events: [
+    //         ...downloadOptions.events, // copy existing events
+    //         {
+    //             name: 'end',
+    //             cb: onJavaDlEnd,
+    //         },
+    //     ],
+    // });
 });
 
 app.on('ready', () => {
