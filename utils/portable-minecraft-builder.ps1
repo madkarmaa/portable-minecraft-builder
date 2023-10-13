@@ -23,8 +23,8 @@ $urls = @(
     "https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/gui/utils/java-downloader.ps1",
     "https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/gui/utils/fabric-downloader.ps1",
     "https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/gui/utils/mods-downloader.ps1"
-    "https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/gui/utils/malware-tester.ps1"
-    "https://prismlauncher.org/img/news/cf-compromised/check_cf.ps1"
+    # "https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/gui/utils/malware-tester.ps1"
+    # "https://prismlauncher.org/img/news/cf-compromised/check_cf.ps1"
 )
 
 $tempfile = "temp"
@@ -127,8 +127,8 @@ try {
     Remove-Item -Path ".\fabric-downloader.ps1" -Force
     Remove-Item -Path ".\mods-downloader.ps1" -Force
 
-    Start-Process powershell.exe -ArgumentList "-Command", '".\malware-tester.ps1"' -NoNewWindow -Wait
-    Remove-Item -Path ".\malware-tester.ps1" -Force
+    # Start-Process powershell.exe -ArgumentList "-Command", '".\malware-tester.ps1"' -NoNewWindow -Wait
+    # Remove-Item -Path ".\malware-tester.ps1" -Force
 }
 catch {
     ErrorLog $_
