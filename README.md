@@ -25,38 +25,28 @@ Simply run `portable-minecraft-builder-(win64).bat` (download **[here](https://b
 
 ![separator](https://raw.githubusercontent.com/madkarmaa/automatic-chatgpt-dan/master/images/line.png)
 
-## ⚠️ WARNING ⚠️
-
-⚠️ **FRACTUREISER** INFORMATION ⚠️
-
-As of **09/06/2023**, a few days ago several mods got infected by a virus, and so I've wanted to include all the security checkers avaiable at the moment since this script installs mods.
-
-> _Several innocent looking malicious mods and plugins were initially uploaded by the malware's creator to the mod hosting website CurseForge and plugin hub dev.craftbukkit.org (not the Bukkit software itself). A high-profile mod pack developer downloaded one of these mods to try out, which infected files in their computer without their knowledge - this included a copy of a working project that would then be uploaded to CurseForge as a seemingly leigimate file, with the virus included._
-
-Check out **[fractureiser-investigation/fractureiser](https://github.com/fractureiser-investigation/fractureiser/)** and **https://prismlauncher.org/news/cf-compromised-alert/** for more information.
-
 ## 🛠️ Tools and files used
 
-- **[SKlauncher](https://skmedix.pl/)**: the Minecraft launcher.
+-   **[SKlauncher](https://skmedix.pl/)**: the Minecraft launcher.
 
-- **[Fabric](https://fabricmc.net/)**: modded Minecraft version.
+-   **[Fabric](https://fabricmc.net/)**: modded Minecraft version.
 
-- **[adoptium/temurin17-binaries](https://github.com/adoptium/temurin17-binaries/)**: the recommended Java version by SKlauncher.
+-   **[adoptium/temurin17-binaries](https://github.com/adoptium/temurin17-binaries/)**: the recommended Java version by SKlauncher.
 
-- **[Modrinth](https://modrinth.com/)**'s mods used:
+-   **[Modrinth](https://modrinth.com/)**'s mods used:
 
-  - [Fabric API](https://modrinth.com/mod/fabric-api)
-  - [Iris Shaders](https://modrinth.com/mod/iris)
-  - [Lithium](https://modrinth.com/mod/lithium)
-  - [Sodium](https://modrinth.com/mod/sodium)
-  - [Starlight (Fabric)](https://modrinth.com/mod/starlight)
-  - [Memory Leak Fix](https://modrinth.com/mod/memoryleakfix)
-  - [Krypton](https://modrinth.com/mod/krypton)
-  - [Dynamic FPS](https://modrinth.com/mod/dynamic-fps)
-  - [Mod Menu](https://modrinth.com/mod/modmenu)
-  - [Alternate Current](https://modrinth.com/mod/alternate-current)
-  - [Concurrent Chunk Management Engine (Fabric)](https://modrinth.com/mod/c2me-fabric)
-  - [Entity Culling](https://modrinth.com/mod/entityculling)
+    -   [Fabric API](https://modrinth.com/mod/fabric-api)
+    -   [Iris Shaders](https://modrinth.com/mod/iris)
+    -   [Lithium](https://modrinth.com/mod/lithium)
+    -   [Sodium](https://modrinth.com/mod/sodium)
+    -   [Starlight (Fabric)](https://modrinth.com/mod/starlight)
+    -   [Memory Leak Fix](https://modrinth.com/mod/memoryleakfix)
+    -   [Krypton](https://modrinth.com/mod/krypton)
+    -   [Dynamic FPS](https://modrinth.com/mod/dynamic-fps)
+    -   [Mod Menu](https://modrinth.com/mod/modmenu)
+    -   [Alternate Current](https://modrinth.com/mod/alternate-current)
+    -   [Concurrent Chunk Management Engine (Fabric)](https://modrinth.com/mod/c2me-fabric)
+    -   [Entity Culling](https://modrinth.com/mod/entityculling)
 
 ![separator](https://raw.githubusercontent.com/madkarmaa/automatic-chatgpt-dan/master/images/line.png)
 
