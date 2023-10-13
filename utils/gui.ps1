@@ -16,10 +16,10 @@ try {
     Add-Type -AssemblyName System.Windows.Forms
 
     # Color palette
-    $accentColor1 = [System.Drawing.Color]::FromArgb(36, 36, 36)
-    $accentColor3 = [System.Drawing.Color]::FromArgb(93, 63, 211)
+    $accentColor1 = [System.Drawing.Color]::FromArgb(33, 37, 41)
+    $accentColor3 = [System.Drawing.Color]::FromArgb(234, 88, 12)
     $accentColor4 = [System.Drawing.Color]::FromArgb(255, 191, 0)
-    $accentColor5 = [System.Drawing.Color]::FromArgb(255, 36, 0)
+    $accentColor5 = [System.Drawing.Color]::FromArgb(255, 255, 255)
     $successColor = [System.Drawing.Color]::FromArgb(0, 255, 0)
 
     # Create the form
