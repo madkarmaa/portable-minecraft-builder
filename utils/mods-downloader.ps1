@@ -23,7 +23,8 @@ try {
     $nameResponse = Invoke-RestMethod -Uri $nameUrl -Method GET
     $modName = $nameResponse.title
 
-    [array]$matchingFiles = $response | Where-Object { ($_.version_type -eq "release") -and ($_.loaders -contains "fabric") -and ($_.game_versions -contains $minecraftVersion) }
+    # ($_.version_type -eq "release") -and
+    [array]$matchingFiles = $response | Where-Object { ($_.loaders -contains "fabric") -and ($_.game_versions -contains $minecraftVersion) }
 
     if ($matchingFiles.Count -gt 0) {
         $fileToDownload = $null
