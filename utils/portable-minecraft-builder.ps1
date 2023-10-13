@@ -97,7 +97,8 @@ try {
         Log "Done" -logLevel "SUCCESS"
     
         if ($InstallMods -eq $true) {
-            $projectNames = @("alternate-current", "c2me-fabric", "entityculling", "fabric-api", "iris", "lithium", "sodium", "starlight", "memoryleakfix", "krypton", "dynamic-fps", "modmenu")
+            # "c2me-fabric"
+            $projectNames = @("entityculling", "fabric-api", "iris", "lithium", "sodium", "starlight", "memoryleakfix", "krypton", "dynamic-fps", "modmenu")
         
             Log "Installing mods..."
         
