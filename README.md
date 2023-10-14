@@ -47,6 +47,7 @@ Simply run `portable-minecraft-builder-(win64).bat` (download **[here](https://b
     -   [Alternate Current](https://modrinth.com/mod/alternate-current)
     -   [Concurrent Chunk Management Engine (Fabric)](https://modrinth.com/mod/c2me-fabric)
     -   [Entity Culling](https://modrinth.com/mod/entityculling)
+    -   [LazyDFU](https://modrinth.com/mod/lazydfu)
 
 ![separator](https://raw.githubusercontent.com/madkarmaa/automatic-chatgpt-dan/master/images/line.png)
 
