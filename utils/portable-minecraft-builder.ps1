@@ -98,7 +98,7 @@ try {
     
         if ($InstallMods -eq $true) {
             # "c2me-fabric"
-            $projectNames = @("entityculling", "fabric-api", "iris", "lithium", "sodium", "starlight", "memoryleakfix", "krypton", "dynamic-fps", "modmenu")
+            $projectNames = @("lazydfu", "entityculling", "fabric-api", "iris", "lithium", "sodium", "starlight", "memoryleakfix", "krypton", "dynamic-fps", "modmenu")
         
             Log "Installing mods..."
         
