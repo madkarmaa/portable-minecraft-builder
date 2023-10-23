@@ -215,9 +215,9 @@ if (($installMods.ToLower() -eq "y")) {
             $destinationPath = Join-Path $modsDir $modFile
 
             Download -url $modUrl -outPath $destinationPath
-            Log "Successfully downloaded $modName" -level "SUCCESS"
+            Log "Successfully downloaded [32m$modName[0m" -level "SUCCESS"
         } else {
-            Log "No matching files found for $modName in game version $minecraftVersion" -level "ERROR"
+            Log "No matching files found for [32m$modName[0m in game version [32m$minecraftVersion[0m" -level "ERROR"
         }
     }
 } else {
@@ -225,8 +225,8 @@ if (($installMods.ToLower() -eq "y")) {
 }
 
 # create runnable files
-"Set WshShell = CreateObject(`"WScript.Shell`")`nWshShell.Run Chr(34) & `".\minecraft.bat`" & Chr(34), 0`nSet WshShell = Nothing" | Out-File (Join-Path "./" "Minecraft.vbs") -Force
-"@echo off`nset java=`"$java`"`nset launcher=`"$launcher`"`nset workingDirectory=`"$gameDir`"`n%java% -jar %launcher% --workDir %workingDirectory%" | Out-File (Join-Path "./" "minecraft.bat") -Force
+"Set WshShell = CreateObject(`"WScript.Shell`")`nWshShell.Run Chr(34) & `".\minecraft.bat`" & Chr(34), 0`nSet WshShell = Nothing" | Out-File -Force (Join-Path "./" "Minecraft.vbs")
+"@echo off`nset java=`"$java`"`nset launcher=`"$launcher`"`nset workingDirectory=`"$gameDir`"`n%java% -jar %launcher% --workDir %workingDirectory%" | Out-File -Force (Join-Path "./" "minecraft.bat")
 
 # hide files the user should not run
 $filesToHide = @(".\minecraft.bat", $launcher)
