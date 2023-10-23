@@ -168,9 +168,12 @@ if (($installMods.ToLower() -eq "y")) {
         Log "Wait until the launcher is completely loaded, then close it!" -level "WARN"
         Start-Process $java "-jar ./sklauncher.jar --workDir $gameDir" -NoNewWindow -Wait
         Log "Installing Fabric..."
+        # TODO: check if fabric installer fails
         Start-Process $java "-jar ./fabric.jar client -dir $gameDir" -NoNewWindow -Wait
         Log "Installed Fabric" -level "SUCCESS"
     }
+
+    Remove-Item -Path (Join-Path "./" "fabric.jar") -Force
 
     # mods list
     $mods = @("lazydfu", "entityculling", "fabric-api", "iris", "lithium", "sodium", "starlight", "memoryleakfix", "krypton", "dynamic-fps")
