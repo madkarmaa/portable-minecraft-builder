@@ -217,7 +217,7 @@ if (($installMods.ToLower() -eq "y")) {
             Download -url $modUrl -outPath $destinationPath
             Log "Successfully downloaded [32m$modName[0m" -level "SUCCESS"
         } else {
-            Log "No matching files found for [32m$modName[0m in game version [32m$minecraftVersion[0m" -level "ERROR"
+            Log "No matching files found for [31m$modName[0m in game version [31m$minecraftVersion[0m" -level "ERROR"
         }
     }
 } else {
