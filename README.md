@@ -43,17 +43,10 @@ Simply run `portable-minecraft-builder-(win64).bat` (download **[here](https://b
     -   [Memory Leak Fix](https://modrinth.com/mod/memoryleakfix)
     -   [Krypton](https://modrinth.com/mod/krypton)
     -   [Dynamic FPS](https://modrinth.com/mod/dynamic-fps)
-    -   [Mod Menu](https://modrinth.com/mod/modmenu)
     -   [Alternate Current](https://modrinth.com/mod/alternate-current)
     -   [Concurrent Chunk Management Engine (Fabric)](https://modrinth.com/mod/c2me-fabric)
     -   [Entity Culling](https://modrinth.com/mod/entityculling)
     -   [LazyDFU](https://modrinth.com/mod/lazydfu)
-
-![separator](https://raw.githubusercontent.com/madkarmaa/automatic-chatgpt-dan/master/images/line.png)
-
-## 🎥 Demo
-
-https://github.com/madkarmaa/portable-minecraft-builder/assets/100418457/c01fb43c-fcac-4ef5-801f-b3f16787ec76
 
 ![separator](https://raw.githubusercontent.com/madkarmaa/automatic-chatgpt-dan/master/images/line.png)
 
