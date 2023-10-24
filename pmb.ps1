@@ -225,21 +225,14 @@ if (($installMods.ToLower() -eq "y")) {
 }
 
 # create runnable files
-if (Test-Path (Join-Path "./" "Minecraft.vbs") -PathType Leaf) {
-    Remove-Item -Path (Join-Path "./" "Minecraft.vbs") -Force
+if (Test-Path (Join-Path "./" "Minecraft.bat") -PathType Leaf) {
+    Remove-Item -Path (Join-Path "./" "Minecraft.bat") -Force
 }
-"Set WshShell = CreateObject(`"WScript.Shell`")`nWshShell.Run Chr(34) & `".\minecraft.bat`" & Chr(34), 0`nSet WshShell = Nothing" | Out-File -Force (Join-Path "./" "Minecraft.vbs")
-if (Test-Path (Join-Path "./" "minecraft.bat") -PathType Leaf) {
-    Remove-Item -Path (Join-Path "./" "minecraft.bat") -Force
-}
-"@echo off`nset java=`"$java`"`nset launcher=`"$launcher`"`nset workingDirectory=`"$gameDir`"`n%java% -jar %launcher% --workDir %workingDirectory%" | Out-File -Force (Join-Path "./" "minecraft.bat")
+"START `"`" `"$java`" -jar `"$launcher`" --workDir `"$gameDir`"" | Out-File -Force (Join-Path "./" "minecraft.bat")
 
 # hide files the user should not run
-$filesToHide = @(".\minecraft.bat", $launcher)
-foreach ($file in $filesToHide) {
-    $file = Get-Item $file -Force
-    $file.attributes = $file.attributes -bxor [System.IO.FileAttributes]::Hidden
-}
+$file = Get-Item $launcher -Force
+$file.attributes = $file.attributes -bxor [System.IO.FileAttributes]::Hidden
 
 Log "Files generated" -level "SUCCESS"
 
