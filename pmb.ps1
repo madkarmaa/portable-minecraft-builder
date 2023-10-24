@@ -237,7 +237,8 @@ if (Test-Path (Join-Path "./" "minecraft.bat") -PathType Leaf) {
 # hide files the user should not run
 $filesToHide = @(".\minecraft.bat", $launcher)
 foreach ($file in $filesToHide) {
-    (Get-Item $file -Force).Attributes += [System.IO.FileAttributes]::Hidden
+    $file = Get-Item $file -Force
+    $file.attributes = $file.attributes -bxor [System.IO.FileAttributes]::Hidden
 }
 
 Log "Files generated" -level "SUCCESS"
