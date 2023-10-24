@@ -228,7 +228,7 @@ if (($installMods.ToLower() -eq "y")) {
 if (Test-Path (Join-Path "./" "Minecraft.bat") -PathType Leaf) {
     Remove-Item -Path (Join-Path "./" "Minecraft.bat") -Force
 }
-"START `"`" `"$java`" -jar `"$launcher`" --workDir `"$gameDir`"" | Out-File -Force (Join-Path "./" "Minecraft.bat")
+"START `"`" `"$java`" -jar `"$launcher`" --workDir `"$gameDir`"" | Out-File -Force (Join-Path "./" "Minecraft.bat") -Encoding ascii
 
 # hide files the user should not run
 $file = Get-Item $launcher -Force
