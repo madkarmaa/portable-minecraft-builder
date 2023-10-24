@@ -34,7 +34,7 @@ function Log {
     ($logEntry -replace '\e\[[0-9;]*m') | Out-File -Append -FilePath $logFilePath -Force
 }
 
-Write-Host "``7MM`"`"`"Mq. ``7MMM.     ,MMF'``7MM`"`"`"Yp, " -ForegroundColor Green
+Write-Host "`n``7MM`"`"`"Mq. ``7MMM.     ,MMF'``7MM`"`"`"Yp, " -ForegroundColor Green
 Write-Host "  MM   ``MM.  MMMb    dPMM    MM    Yb " -ForegroundColor Green
 Write-Host "  MM   ,M9   M YM   ,M MM    MM    dP " -ForegroundColor Green
 Write-Host "  MMmmdM9    M  Mb  M' MM    MM`"`"`"bg. " -ForegroundColor Green
