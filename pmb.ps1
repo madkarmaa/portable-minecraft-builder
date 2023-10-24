@@ -225,9 +225,7 @@ if (($installMods.ToLower() -eq "y")) {
 }
 
 # create runnable files
-if (Test-Path (Join-Path "./" "Minecraft.bat") -PathType Leaf) {
-    Remove-Item -Path (Join-Path "./" "Minecraft.bat") -Force
-}
+# https://stackoverflow.com/a/15439727
 "START `"`" `"$java`" -jar `"$launcher`" --workDir `"$gameDir`"" | Out-File -Force (Join-Path "./" "Minecraft.bat") -Encoding ascii
 
 # hide files the user should not run
