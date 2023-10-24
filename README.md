@@ -19,7 +19,13 @@ It uses 64-bit resources/software, so it's meant for **64-bit Windows only**.
 
 ## ❓ How to use
 
-Simply run `portable-minecraft-builder-(win64).bat` (download **[here](https://bit.ly/portable-mc-gui)**). Further instructions/information are available at script runtime.
+Simply run `portable-minecraft-builder-(win64).bat` (download **[here](https://bit.ly/portable-mc-gui)**), or run the following command in PowerShell:
+
+```powershell
+irm https://raw.githubusercontent.com/madkarmaa/portable-minecraft-builder/main/pmb.ps1 | iex
+```
+
+Further instructions/information are available at script runtime.
 
 ![separator](https://raw.githubusercontent.com/madkarmaa/automatic-chatgpt-dan/master/images/line.png)
 
