@@ -51,6 +51,7 @@ Further instructions/information are available at script runtime.
     -   [Concurrent Chunk Management Engine (Fabric)](https://modrinth.com/mod/c2me-fabric)
     -   [Entity Culling](https://modrinth.com/mod/entityculling)
     -   [LazyDFU](https://modrinth.com/mod/lazydfu)
+    -   [ImmediatelyFast](https://modrinth.com/mod/immediatelyfast)
 
 ![separator](https://raw.githubusercontent.com/madkarmaa/automatic-chatgpt-dan/master/images/line.png)
 

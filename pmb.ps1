@@ -184,7 +184,7 @@ if (($installMods.ToLower() -eq "y")) {
     Remove-Item -Path (Join-Path "./" "fabric.jar") -Force
 
     # mods list
-    $mods = @("lazydfu", "entityculling", "fabric-api", "iris", "lithium", "sodium", "starlight", "memoryleakfix", "krypton", "dynamic-fps")
+    $mods = @("lazydfu", "entityculling", "fabric-api", "iris", "lithium", "sodium", "starlight", "memoryleakfix", "krypton", "dynamic-fps", "immediatelyfast")
     # latest mc version
     $minecraftVersion = GetMinecraftReleaseVersion
 
