@@ -139,7 +139,7 @@ $java = Join-Path (Join-Path "./" $javaFolder) (Join-Path "bin" "javaw.exe")
 Log "Downloading game launcher..."
 # TODO: auto update
 $launcher = Join-Path "./" "sklauncher.jar"
-Download -url "https://skmedix.pl/binaries_/SKlauncher-3.1.2.jar" -outPath $launcher
+Download -url "https://skmedix.pl/binaries/_/SKlauncher-3.2.jar" -outPath $launcher
 Log "Game launcher downloaded" -level "SUCCESS"
 
 # ask the user if they want to install optimization mods
